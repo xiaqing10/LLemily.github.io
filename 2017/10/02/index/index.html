@@ -69,18 +69,18 @@
 
 
 
-<meta name="description" content="1.WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
+<meta name="description" content="WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
 <meta name="keywords" content="nodejs imooc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebSocket &amp;&amp; socket.io">
 <meta property="og:url" content="http://yoursite.com/2017/10/02/index/index.html">
 <meta property="og:site_name" content="LLemily">
-<meta property="og:description" content="1.WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
+<meta property="og:description" content="WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-02T08:21:59.162Z">
+<meta property="og:updated_time" content="2017-10-02T08:38:39.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebSocket &amp;&amp; socket.io">
-<meta name="twitter:description" content="1.WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
+<meta name="twitter:description" content="WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
 
 
 
@@ -358,8 +358,9 @@
       
 
       
-        <blockquote>
-<p>1.WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。<br><a id="more"></a><br>2.在WebSocket API中，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。<br>3.浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据。<br>4.当你获取 Web Socket 连接后，你可以通过 send() 方法来向服务器发送数据，并通过 onmessage 事件来接收服务器返回的数据。</p>
+        <p>WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。<br><a id="more"></a></p>
+<h1 id="WebSocket-简介"><a href="#WebSocket-简介" class="headerlink" title="WebSocket 简介"></a>WebSocket 简介</h1><blockquote>
+<p>在WebSocket API中，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。<br>浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据。<br>当你获取 Web Socket 连接后，你可以通过 send() 方法来向服务器发送数据，并通过 onmessage 事件来接收服务器返回的数据。</p>
 </blockquote>
 <h1 id="WebSocket-事件"><a href="#WebSocket-事件" class="headerlink" title="WebSocket 事件"></a>WebSocket 事件</h1><blockquote>
 <p>以下是 WebSocket 对象的相关事件。假定我们使用了以上代码创建了 Socket 对象：<br>open      Socket.onopen           连接建立时触发<br>message  Socket.onmessage   客户端接收服务端数据时触发<br>error      Socket.onerror     通信发生错误时触发<br>close      Socket.onclose     连接关闭时触发                </p>
@@ -371,7 +372,7 @@
 <li>Socket.close()    关闭连接</li>
 </ul>
 </blockquote>
-<h1 id="WebSocket-实例"><a href="#WebSocket-实例" class="headerlink" title="WebSocket 实例"></a>WebSocket 实例</h1><pre><code>var conn = new WebSocket(&quot;ws://echo.websocket.org/&quot;); //建立连接
+<h1 id="WebSocket-实例"><a href="#WebSocket-实例" class="headerlink" title="WebSocket 实例"></a>WebSocket 实例</h1><h2 id="实例1：建立与ws-echo-websocket-org-的通信"><a href="#实例1：建立与ws-echo-websocket-org-的通信" class="headerlink" title="实例1：建立与ws://echo.websocket.org/的通信"></a>实例1：建立与ws://echo.websocket.org/的通信</h2><pre><code>var conn = new WebSocket(&quot;ws://echo.websocket.org/&quot;); //建立连接
 conn.onopen = function(){             //连接建立时触发
     console.log(&apos;websocktet connected!&apos;);
     document.getElementById(&apos;recv&apos;).innerHTML = &quot;connected&quot;;
@@ -385,6 +386,78 @@ conn.onmessage = function(e){         //接收到数据时触发
 document.getElementById(&apos;sendBtn&apos;).onclick = function(){   //点击sendBtn按钮时，将填写的数据发送出去
     conn.send(document.getElementById(&apos;sendTxt&apos;).value);
 }
+</code></pre><h2 id="实例2：建立WebSocket的服务器"><a href="#实例2：建立WebSocket的服务器" class="headerlink" title="实例2：建立WebSocket的服务器"></a>实例2：建立WebSocket的服务器</h2><pre><code>var ws = require(&apos;nodejs-websocket&apos;);//需要在服务器上安装nodejs-websocket
+var port = 3000;
+
+var server = ws.createServer(function(conn){
+    console.log(&apos;New connection&apos;);
+    conn.on(&apos;text&apos;,function(str){   
+        console.log(&apos;Received &apos;+str);
+        conn.sendText(str+&quot;!!!&quot;);
+    })
+}).listen(port);
+//conn.on(&apos;text&apos;,function(str){}),收到客户端的数据时触发
+</code></pre><h2 id="实例3：利用WebSocket建立聊天室"><a href="#实例3：利用WebSocket建立聊天室" class="headerlink" title="实例3：利用WebSocket建立聊天室"></a>实例3：利用WebSocket建立聊天室</h2><pre><code>服务器端：
+var ws = require(&apos;nodejs-websocket&apos;);
+var port = 3000;
+var clientCount = 0;
+
+var server = ws.createServer(function(conn){
+    clientCount++;
+    console.log(&apos;New connection&apos;);
+    conn.nickname = clientCount;
+
+    var mes={};
+    mes.type = &apos;enter&apos;;
+    mes.data = &quot;user &quot; +conn.nickname+&apos; comes in&apos;;
+    broadcast(JSON.stringify(mes)); 
+    conn.on(&apos;text&apos;,function(str){
+        console.log(&apos;Received &apos;+str);
+        mes.type = &apos;words&apos;;
+        mes.data = &quot;user &quot; + conn.nickname +&quot; says: &quot;+str+&quot;!!!&quot;;
+        broadcast(JSON.stringify(mes));
+    });
+    conn.on(&apos;close&apos;,function(){
+        mes.type = &apos;leave&apos;;
+        mes.data = &quot;user &quot;+conn.nickname+&apos; left&apos;;
+        broadcast(JSON.stringify(mes)); 
+        //使用json格式来传递数据，用type来表明类型，data来传递数据
+    });
+}).listen(port);
+console.log(&apos;server running at 192.168.216.131:3000&apos;);
+
+function broadcast(str){
+    server.connections.forEach(function(value){
+        value.sendText(str);
+    });
+}//使用server的connections实现一个广播方法
+
+
+客户端：
+var showMessgae = function(type,data){
+        var div =document.createElement(&apos;div&apos;);
+        div.innerHTML = data;
+        if(type==&quot;enter&quot;){
+            div.style.color = &quot;green&quot;;
+        }else if(type == &quot;leave&quot;){
+            div.style.color = &quot;red&quot;;
+        }
+        document.body.appendChild(div);
+    }
+    var conn = new WebSocket(&quot;ws://192.168.216.131:3000/&quot;);
+    conn.onopen = function(){
+        console.log(&apos;websocktet connected!&apos;);
+        document.getElementById(&apos;sendBtn&apos;).onclick = function(){
+            conn.send(document.getElementById(&apos;sendTxt&apos;).value);
+        }
+    }
+    conn.onclose = function(){
+        console.log(&apos;websocktet disconnected&apos;);
+    }
+    conn.onmessage = function(e){
+        var mes = JSON.parse(e.data);
+        showMessgae(mes.type,mes.data);
+    }
 </code></pre>
       
     </div>
@@ -564,7 +637,7 @@ document.getElementById(&apos;sendBtn&apos;).onclick = function(){   //点击sen
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-事件"><span class="nav-number">1.</span> <span class="nav-text">WebSocket 事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-方法"><span class="nav-number">2.</span> <span class="nav-text">WebSocket 方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-实例"><span class="nav-number">3.</span> <span class="nav-text">WebSocket 实例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-简介"><span class="nav-number">1.</span> <span class="nav-text">WebSocket 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-事件"><span class="nav-number">2.</span> <span class="nav-text">WebSocket 事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-方法"><span class="nav-number">3.</span> <span class="nav-text">WebSocket 方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-实例"><span class="nav-number">4.</span> <span class="nav-text">WebSocket 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例1：建立与ws-echo-websocket-org-的通信"><span class="nav-number">4.1.</span> <span class="nav-text">实例1：建立与ws://echo.websocket.org/的通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例2：建立WebSocket的服务器"><span class="nav-number">4.2.</span> <span class="nav-text">实例2：建立WebSocket的服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例3：利用WebSocket建立聊天室"><span class="nav-number">4.3.</span> <span class="nav-text">实例3：利用WebSocket建立聊天室</span></a></li></ol></li></ol></div>
             
 
           </div>
