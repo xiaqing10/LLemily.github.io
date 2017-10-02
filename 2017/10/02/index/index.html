@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="LLemily">
 <meta property="og:description" content="WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-02T09:24:22.700Z">
+<meta property="og:updated_time" content="2017-10-02T09:40:00.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebSocket &amp;&amp; socket.io">
 <meta name="twitter:description" content="WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
@@ -540,7 +540,8 @@ var showMessgae = function(type,data){
         var txt = document.getElementById(&apos;sendTxt&apos;).value;
         socket.emit(&apos;news&apos;,txt);
     }//发送消息到服务器
-</code></pre><h1 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h1><p><a href="https://socket.io/docs/" target="_blank" rel="external">https://socket.io/docs/</a><br><a href="http://www.runoob.com/html/html5-websocket.html" target="_blank" rel="external">http://www.runoob.com/html/html5-websocket.html</a></p>
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>1.利用WebSocket建立连接发送数据时，不方便对数据进行分类，并且发送对象数据要转换成json格式。<br>2.利用socket.io可以直接发送对象格式的数据，并且对数据进行分类发送和响应，使用起来更方便<br>3.并且对io.emit可以直接进行广播发送，不需要像WebSocket一样，调用server.connections</p>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a href="https://socket.io/docs/" target="_blank" rel="external">https://socket.io/docs/</a><br><a href="http://www.runoob.com/html/html5-websocket.html" target="_blank" rel="external">http://www.runoob.com/html/html5-websocket.html</a></p>
 
       
     </div>
@@ -720,7 +721,7 @@ var showMessgae = function(type,data){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-简介"><span class="nav-number">1.</span> <span class="nav-text">WebSocket 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-事件"><span class="nav-number">2.</span> <span class="nav-text">WebSocket 事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-方法"><span class="nav-number">3.</span> <span class="nav-text">WebSocket 方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-实例"><span class="nav-number">4.</span> <span class="nav-text">WebSocket 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例1：建立与ws-echo-websocket-org-的通信"><span class="nav-number">4.1.</span> <span class="nav-text">实例1：建立与ws://echo.websocket.org/的通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例2：建立WebSocket的服务器"><span class="nav-number">4.2.</span> <span class="nav-text">实例2：建立WebSocket的服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例3：利用WebSocket建立聊天室"><span class="nav-number">4.3.</span> <span class="nav-text">实例3：利用WebSocket建立聊天室</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例4：利用socket-io实现通信"><span class="nav-number">4.4.</span> <span class="nav-text">实例4：利用socket.io实现通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例5：利用socket-io实现聊天室"><span class="nav-number">4.5.</span> <span class="nav-text">实例5：利用socket.io实现聊天室</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text">reference:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-简介"><span class="nav-number">1.</span> <span class="nav-text">WebSocket 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-事件"><span class="nav-number">2.</span> <span class="nav-text">WebSocket 事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-方法"><span class="nav-number">3.</span> <span class="nav-text">WebSocket 方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-实例"><span class="nav-number">4.</span> <span class="nav-text">WebSocket 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例1：建立与ws-echo-websocket-org-的通信"><span class="nav-number">4.1.</span> <span class="nav-text">实例1：建立与ws://echo.websocket.org/的通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例2：建立WebSocket的服务器"><span class="nav-number">4.2.</span> <span class="nav-text">实例2：建立WebSocket的服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例3：利用WebSocket建立聊天室"><span class="nav-number">4.3.</span> <span class="nav-text">实例3：利用WebSocket建立聊天室</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例4：利用socket-io实现通信"><span class="nav-number">4.4.</span> <span class="nav-text">实例4：利用socket.io实现通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例5：利用socket-io实现聊天室"><span class="nav-number">4.5.</span> <span class="nav-text">实例5：利用socket.io实现聊天室</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>
