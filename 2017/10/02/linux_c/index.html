@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux c," />
+  <meta name="keywords" content="linux_c," />
 
 
 
@@ -69,18 +69,18 @@
 
 
 
-<meta name="description" content="C语言适合做什么1.小工具2.和硬件打交道的程序3.有高性能要求的应用程序">
-<meta name="keywords" content="linux c">
+<meta name="description" content="如何在linux环境下开始写C语言程序">
+<meta name="keywords" content="linux_c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux C语言">
 <meta property="og:url" content="http://yoursite.com/2017/10/02/linux_c/index.html">
 <meta property="og:site_name" content="LLemily">
-<meta property="og:description" content="C语言适合做什么1.小工具2.和硬件打交道的程序3.有高性能要求的应用程序">
+<meta property="og:description" content="如何在linux环境下开始写C语言程序">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-04T10:37:29.648Z">
+<meta property="og:updated_time" content="2017-10-04T10:46:47.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux C语言">
-<meta name="twitter:description" content="C语言适合做什么1.小工具2.和硬件打交道的程序3.有高性能要求的应用程序">
+<meta name="twitter:description" content="如何在linux环境下开始写C语言程序">
 
 
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/linux-c/" itemprop="url" rel="index">
+                    <span itemprop="name">linux_c</span>
                   </a>
                 </span>
 
@@ -358,8 +358,8 @@
       
 
       
-        <p>C语言适合做什么<br>1.小工具<br>2.和硬件打交道的程序<br>3.有高性能要求的应用程序<br><a id="more"></a></p>
-<h1 id="Linux-C语言编程笔记"><a href="#Linux-C语言编程笔记" class="headerlink" title="Linux C语言编程笔记"></a>Linux C语言编程笔记</h1><h2 id="多个源文件共同编译1"><a href="#多个源文件共同编译1" class="headerlink" title="多个源文件共同编译1"></a>多个源文件共同编译1</h2><pre><code>hello.c：
+        <p>如何在linux环境下开始写C语言程序<br><a id="more"></a></p>
+<h1 id="Linux-C语言编程基础"><a href="#Linux-C语言编程基础" class="headerlink" title="Linux C语言编程基础"></a>Linux C语言编程基础</h1><h2 id="多个源文件共同编译1"><a href="#多个源文件共同编译1" class="headerlink" title="多个源文件共同编译1"></a>多个源文件共同编译1</h2><pre><code>hello.c：
 #include &lt;stdio.h&gt;
 int main()
 {
@@ -632,7 +632,7 @@ v= 3333.000000
       
         <div class="post-tags">
           
-            <a href="/tags/linux-c/" rel="tag"># linux c</a>
+            <a href="/tags/linux-c/" rel="tag"># linux_c</a>
           
         </div>
       
@@ -744,7 +744,7 @@ v= 3333.000000
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -755,7 +755,7 @@ v= 3333.000000
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -810,7 +810,7 @@ v= 3333.000000
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-C语言编程笔记"><span class="nav-number">1.</span> <span class="nav-text">Linux C语言编程笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译1"><span class="nav-number">1.1.</span> <span class="nav-text">多个源文件共同编译1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译2"><span class="nav-number">1.2.</span> <span class="nav-text">多个源文件共同编译2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译3"><span class="nav-number">1.3.</span> <span class="nav-text">多个源文件共同编译3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译4-Makefile"><span class="nav-number">1.4.</span> <span class="nav-text">多个源文件共同编译4(Makefile)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main函数中的return"><span class="nav-number">1.5.</span> <span class="nav-text">main函数中的return</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main函数中的参数"><span class="nav-number">1.6.</span> <span class="nav-text">main函数中的参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准输入流、输出流以及错误流"><span class="nav-number">1.7.</span> <span class="nav-text">标准输入流、输出流以及错误流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准输入流、输出流以及错误流的重定向"><span class="nav-number">1.8.</span> <span class="nav-text">标准输入流、输出流以及错误流的重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管道操作"><span class="nav-number">1.9.</span> <span class="nav-text">管道操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">2.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-C语言编程基础"><span class="nav-number">1.</span> <span class="nav-text">Linux C语言编程基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译1"><span class="nav-number">1.1.</span> <span class="nav-text">多个源文件共同编译1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译2"><span class="nav-number">1.2.</span> <span class="nav-text">多个源文件共同编译2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译3"><span class="nav-number">1.3.</span> <span class="nav-text">多个源文件共同编译3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译4-Makefile"><span class="nav-number">1.4.</span> <span class="nav-text">多个源文件共同编译4(Makefile)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main函数中的return"><span class="nav-number">1.5.</span> <span class="nav-text">main函数中的return</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main函数中的参数"><span class="nav-number">1.6.</span> <span class="nav-text">main函数中的参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准输入流、输出流以及错误流"><span class="nav-number">1.7.</span> <span class="nav-text">标准输入流、输出流以及错误流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准输入流、输出流以及错误流的重定向"><span class="nav-number">1.8.</span> <span class="nav-text">标准输入流、输出流以及错误流的重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管道操作"><span class="nav-number">1.9.</span> <span class="nav-text">管道操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">2.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>
