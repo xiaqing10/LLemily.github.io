@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="FPGA," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="本文总结在BIAC参与的几个项目中遇到的问题和解决方案">
+<meta name="keywords" content="FPGA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Question &amp;&amp; Solution">
+<meta property="og:url" content="http://yoursite.com/2017/10/16/Question&Solution/index.html">
+<meta property="og:site_name" content="LLemily">
+<meta property="og:description" content="本文总结在BIAC参与的几个项目中遇到的问题和解决方案">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-16T07:19:34.471Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Question &amp;&amp; Solution">
+<meta name="twitter:description" content="本文总结在BIAC参与的几个项目中遇到的问题和解决方案">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/16/Question&Solution/"/>
+
+
+
+
+
+  <title>Question && Solution | LLemily</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5195eb657caf6585e0e3ebeccc8b4fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LLemily</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">LLemily's Blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/Question&Solution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LLemily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ycq.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LLemily">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Question && Solution</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-16T13:45:46-04:00">
+                2017-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Projects/" itemprop="url" rel="index">
+                    <span itemprop="name">Projects</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/16/Question&Solution/" class="leancloud_visitors" data-flag-title="Question && Solution">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文总结在BIAC参与的几个项目中遇到的问题和解决方案<br><a id="more"></a></p>
+<h1 id="刑侦足迹采集设备开发过程中遇到的问题和解决办法"><a href="#刑侦足迹采集设备开发过程中遇到的问题和解决办法" class="headerlink" title="刑侦足迹采集设备开发过程中遇到的问题和解决办法"></a>刑侦足迹采集设备开发过程中遇到的问题和解决办法</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<p>该系统使用cis采集管采集，然后经过A/D芯片将模拟信号转化成数字信号，然后通过两片sdram实现乒乓缓存，最后通过usb芯片传输给PC段进行图像处理。在使用上，通过手工推动设备，在足迹上推动。进行图像采集。</p>
+</blockquote>
+<h2 id="Question1"><a href="#Question1" class="headerlink" title="Question1"></a>Question1</h2><blockquote>
+<p>如何判断开始采集，如何判断采集结束?</p>
+</blockquote>
+<h2 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1"></a>Solution1</h2><blockquote>
+<p>在设备两侧安装有带有码盘（每转动一周，输出500个脉冲）的滚轮。在上电之后，对码盘脉冲计数，达到一定数量之后（说明设备在进行滚动）开启图像采集。<br>判断一定时间内的码盘数量低于某个值（说明设备停止运动）时，关闭图像采集。</p>
+</blockquote>
+<h2 id="Question2"><a href="#Question2" class="headerlink" title="Question2"></a>Question2</h2><blockquote>
+<p>因为设备是手持推动，而CIS管的图像采集是逐行扫描的，如果以一个固定时间进行采集，图像会按照推动的快慢在不同的区域出现扭曲变形。</p>
+</blockquote>
+<h2 id="Solution2"><a href="#Solution2" class="headerlink" title="Solution2"></a>Solution2</h2><blockquote>
+<ul>
+<li><p>我们初期决定通过让CIS按照码盘的速度来进行图像采集，即根据对上一个码盘周期的时间长度来决定CIS管采集的行周期。但是由于实际采集的过程中码盘差距太大，图像质量也不理想。</p>
+</li>
+<li><p>其次，我们尝试通过把码盘信号附在每行图像信号的左右，即如果当前行持续期间内左边码盘有脉冲，给行起始数据附一个标志，如果右边码盘有脉冲，给行结束数据附一个标志，然后让PC机对图像进行矩阵变换。并且我们还给左右滚轮在机械结构上连接一根支撑杆，保证两边轮子滚动轨迹平行。最后的PC段校正效果也一般，某些连接部分出现锯齿状。图像变得不平整。</p>
+</li>
+<li><p>最后，我们决定采用机械结构带动CIS管匀速运动的方式，来消除手持推动采集带来的误差，在采集设备悬空覆盖在足迹上，机械结构带动CIS管在被采集对象上运动。可以得到平滑清晰的图像。</p>
+</li>
+</ul>
+</blockquote>
+<h1 id="证照仪图像采集设备开发过程中遇到的问题和解决办法"><a href="#证照仪图像采集设备开发过程中遇到的问题和解决办法" class="headerlink" title="证照仪图像采集设备开发过程中遇到的问题和解决办法"></a>证照仪图像采集设备开发过程中遇到的问题和解决办法</h1><h2 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<p>该系统使用cis采集管采集，然后经过A/D芯片将模拟信号转化成数字信号，然后通过两片sdram实现乒乓缓存，最后通过usb芯片传输给PC段进行图像处理。在使用上，通过插入证照，遮住红外对管，机械结构带动CIS管运动，进行图像采集。机械结构的设计上一定程度的借鉴了刑侦足迹采集设备的经验。</p>
+</blockquote>
+<h2 id="Question1-1"><a href="#Question1-1" class="headerlink" title="Question1"></a>Question1</h2><blockquote>
+<p>在图像采集的过程中出现紫外图像很暗。</p>
+</blockquote>
+<h2 id="Solution1-1"><a href="#Solution1-1" class="headerlink" title="Solution1"></a>Solution1</h2><blockquote>
+<p>设备上，机械结构带动CIS运动，CIS管扫描证照的过程中，有一个往返的过程，我们在CIS返回的过程中，更改A/D芯片的配置，配置可编程增益放大器的系数。提升紫外的图像的亮度。</p>
+</blockquote>
+<h1 id="xx打印扫描一体机开发过程中遇到的问题和解决办法"><a href="#xx打印扫描一体机开发过程中遇到的问题和解决办法" class="headerlink" title="xx打印扫描一体机开发过程中遇到的问题和解决办法"></a>xx打印扫描一体机开发过程中遇到的问题和解决办法</h1><h2 id="Question1-2"><a href="#Question1-2" class="headerlink" title="Question1"></a>Question1</h2><blockquote>
+<p>方案的确定:xx公司希望能够实验室提供参数可变的，多dpi工作模式（200+300+600）的图像采集部分的功能，并且他们只能给我们提供数量有限的接口进行图像传输，希望得到的数据流就是正确的图像数据，并且对出图速度（标准是采集结束后）和图像大小做了相关限制。因为最后设备用于银行，对方不希望我们在其电脑上按照任何桌面处理程序。所以必须由实验室在图像处理并压缩，并且支持在线升级等等。</p>
+</blockquote>
+<h2 id="Solution1-2"><a href="#Solution1-2" class="headerlink" title="Solution1"></a>Solution1</h2><blockquote>
+<ul>
+<li><p>第一轮讨论，我们尝试使用实验室老一套方案，DSP+CIS+A/D+SDRAM+USB的方案来提供图像。因为USB的速度够快，能够满足图像速度的要求，通过dsp与打印机交互来对参数做解析，通过emif通信来给FPGA发参数控制图像采集，通过USB来将图像直接传给PC端。这个方案的不足就是，首先，使用USB与PC进行通信，需要在PC端安装驱动，银行出于安全方向的考虑，不希望采用此方案，并且这样传输的图像数据量比较大，一张图像可能达到几十M，不利于存储，xx方希望我们在FPGA实现图像的压缩算法，第一，实现难度较大，并没有相关方面的基础。第二，可能要增加额外的存储空间，增加成本。</p>
+</li>
+<li><p>第二轮讨论，我们尝试把USB芯片挂在DSP上，用DSP实现图像压缩和传输，DSP实现图像压缩相对FPGA而言简单，也不需要增加硬件成本。实验室DSP组的成员最后讨论说DSP挂USB速度不够，也不知道怎么实现免驱动。</p>
+</li>
+<li><p>第三轮讨论，我们撤掉了USB芯片，因为免驱的数据传输问题搞不定。决定让打印机给PC传图，由于打印机预留接口有限，我们决定采用spi通信的方式，只需要四个IO就可以实现双向的数据传输。最后定下spi+FPGA+dsp的工作方式。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="Introduction-2"><a href="#Introduction-2" class="headerlink" title="Introduction "></a>Introduction </h2><ol>
+<li>打印主控板把采集相关的参数通过spi通信方式发送至FPGA</li>
+<li>FPGA通过emif通信方式将采集参数发送至DSP解析</li>
+<li>DSP解析完成后通过emif通信发送给FPGA，控制FPGA采图</li>
+<li>FPGA控制采集图像是个多线程并发过程，包括:<ul>
+<li>FPGA图像采集控制</li>
+<li>FPGA将图像数据通过视频口发送给DSP</li>
+<li>DSP对图像进行压缩，并通过emif通信发送给FPGA</li>
+<li>FPGA将收集到的数据通过spi通信方式转发给打印机控制板</li>
+</ul>
+</li>
+</ol>
+<h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><ol>
+<li><p>spi通信方式的调试。<br>Spi通信的测试是此方案的关键，采集指令和参数以及最后的图像数据都通过这个方式传输，需要在保证一定速度的同时，保证100%的准确率。</p>
+</li>
+<li><p>中断的控制<br>中断的控制，由于在我们使用的dsp芯片上，只有两个中断源，实际在使用的过程中，当FPGA接收完打印机发送的指令和参数后，需要通过中断的方式通知dsp，FPGA的数据是逐行采集，图像通过视频口的方式发送给DSP,每行图像结束后有个行中断。以及DSP最后发送图像数据给FPGA，FPGA存储完成通知SPI取走数据后，再次通过中断的方式通知DSP继续发送下一个包的数据。如何让只有两个中断源的DSP处理多个中断事件。</p>
+</li>
+<li><p>图像预处理<br>由于实际CIS管的数据流是三段数据的，即先数据第一个像素，然后输出 行像素点/3+1，行像素点*2/3+1，所以数据流并不是一副标准图像，需要对数据流进行处理，保证输出的数据顺序和图像对应。如果用DSP直接操作内存的话，整个过程十分简单，但是由于DSP读取整副图像内存耗时校正。最后决定用FPGA来处理图像。</p>
+</li>
+<li><p>600dpi模式的实现<br>由于xx公司需要dpi参数可配置的图像采集模式，我们需要做200dpi，以及600dpi的测试，200dpi模式相对简单，直接更改CIS管的配置，以及其他参数即可。我们在对一行图像做乒乓处理的过程中，需要缓存一行，并且乒乓操作，需要开辟可以存储两行的内存空间，而内部ram的内存空间是以2的幂次方来开辟的，600dpi图像，一行有5184个点，上下管10368个点，只能用16K存储，乒乓一下即需要32K的内部ram资源，而我们使用的芯片标明只有33.75K，如果采用16K来做600dpi图像处理，工作都无法正常编译。而增加内部ram需要更换FPGA芯片，增加大量成本。</p>
+</li>
+<li><p>图像的校正<br>在图像采集过程中，由于CIS管的各个传感器的感光特性不完全一致，实际上一副白纸采集出现来的像素值可以介于200-230之间，而对RGB各个分量采集如果都存在些许误差的话，最后合成的彩色图像可能会有偏色，虽然偏色现象不明显，但是银行方也不能荣誉，我们考虑对采集到颜色做一个校正处理，即用标准的白色卡纸进行采集，然后采集像素和最后实际像素做一个y=kx+b的线性变化，依此来抵消CIS管传感器采集的细微偏差，此方案之前也用于PC端的处理，能够把偏色很严重的图像校正回来，与实际物品相差无几。而对一行进行逐点校正，需要存储一行的K参数和B参数。而昨晚图像处理之后已经内有足够的ram资源来存储校正参数。</p>
+</li>
+<li><p>多dpi工作后内部ram的精简<br>要让一套系统支持多个dpi工作模式，需要在编译的过程同时考虑不同dpi的图像处理过程，我认为需要对不同的dpi模式开辟单独的ram空间来对图像进行处理，那么之前讨论的33.75实际上只能用来处理单一dpi模式，不符合xx方的设计要求。而且增加内部ram的方案价格上也不被接受。</p>
+</li>
+</ol>
+<h2 id="Answers"><a href="#Answers" class="headerlink" title="Answers"></a>Answers</h2><ol>
+<li>通过与打印机主控板的交流，规定好发送数据的起始和结束标识，数据总长度可变，保证发送参数的灵活和方便，将参数存进FPGA芯片的内部ram中供dsp读出进行解析。通过和dsp的交流，规定好一次只发送一个512字节的数据包，将数据存进内部ram中供spi主机读取。调试spi通信状态机的切换，在dsp对FPGA进行读写操作时，由dsp提供读写时钟操作ram，由dsp提供读写地址，在保持地址不变的条件下，对读写的异步时钟与系统时钟进行与操作，对同一个地址多次读写，以免异步时钟扰动出现漏读漏写的情况。</li>
+<li>我们分析发现，spi取走数据包和cis管图像采集行中断是同时发生的，因为最终的系统需要做到，一边采集，一边处理，一边校正，一边压缩，一边发送。所有操作是同时进行的，所以我们把这两个中断事件放在两个中断源，而FPGA接收完参数包是提前发生的，我们将此中断和取数据中断集成在一起，通过控制emif的某标志地址上的数据值来指明当前中断的中断类型。此方面扩展了中断源能够响应的事件个数，对于不同时发生的中断，可以很方便的扩展。</li>
+<li>CIS管的数据是逐行输出的，我们也逐行来对数据流做校正，而且内部ram的速度完全可以操作CIS的数据流输出，不会增加额外的处理时间。我们采用乒乓缓存的方式，将图像数据流调整之后存进一片ram中，然后操控第二行去写另外一片ram，与此同时，将第一片ram中的数据写入到视频口去。这个操作使整个系统（300dpi工作模式下）的速度提升了4-5秒。</li>
+<li>最后，我们决定采用8+4的模式，即将600dpi模式的图像一行分开存储，用一个8K+4K的内存进行存储，这样乒乓之后所用的内存空间只需要24K。能够正常运行。</li>
+<li>考虑到更换FPGA芯片正在芯片内部ram的成本比较贵，我们决定在FPGA外部外挂一个SRAM，此SRAM的读取速度可以达到10ns,地址线宽17bit（128KB）,数据线宽8bit,我们CIS管输出的数据流是48M*8M，对一个点同时取出K和B参数，需要达到96M的读速度，10ns可以满足需求。我们对各个dpi模式的RGB各个分量的校正系数进行存储（这里的存储地址可以连续存放，由于sram的地址线只有一套，不能边读边写，不适合拿来作图像预处理）。在采集过程中，根据当前采集的灰度类型，取出对应的校正参数，经过校正之后的图像色彩更符合实物。</li>
+<li>实际上在使用过程中，一个时刻只会采集一种dpi模式的图像，和之前复用中断源一样，我们考虑对内部ram进行复用，根据dpi参数，用选择器选择进入ram的数据，控制ram的地址，数据的存储方式等等，ram的读取方式以及进入校正处理的选择，最后成功的将多种dpi的数据处理方式复用在一起。在不增额外内存资源开销的同时，扩展了功能。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FPGA/" rel="tag"># FPGA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/02/index/" rel="next" title="WebSocket && socket.io">
+                <i class="fa fa-chevron-left"></i> WebSocket && socket.io
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/ycq.jpg"
+              alt="LLemily" />
+          
+            <p class="site-author-name" itemprop="name">LLemily</p>
+            <p class="site-description motion-element" itemprop="description">角落围观少年QAQ</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/LLEmily" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/5896499958/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yang-cai-qing-33" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-hand-o-right"></i>Zhihu</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刑侦足迹采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">1.</span> <span class="nav-text">刑侦足迹采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1"><span class="nav-number">1.2.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1"><span class="nav-number">1.3.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question2"><span class="nav-number">1.4.</span> <span class="nav-text">Question2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution2"><span class="nav-number">1.5.</span> <span class="nav-text">Solution2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#证照仪图像采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">2.</span> <span class="nav-text">证照仪图像采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1-1"><span class="nav-number">2.2.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1-1"><span class="nav-number">2.3.</span> <span class="nav-text">Solution1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xx打印扫描一体机开发过程中遇到的问题和解决办法"><span class="nav-number">3.</span> <span class="nav-text">xx打印扫描一体机开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1-2"><span class="nav-number">3.1.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1-2"><span class="nav-number">3.2.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.3.</span> <span class="nav-text">Introduction </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Questions"><span class="nav-number">3.4.</span> <span class="nav-text">Questions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Answers"><span class="nav-number">3.5.</span> <span class="nav-text">Answers</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LLemily</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("YATEnyPlHyg0EVcx7frt3WFM-gzGzoHsz", "0RFNvHiIrkig0RQ8sQtYTLzw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
