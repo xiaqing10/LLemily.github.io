@@ -78,7 +78,18 @@
 <meta property="og:description" content="本文介绍BIAC期间关于XX打印扫描一体机项目FPGA工程部分">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/cis_generate.jpg">
-<meta property="og:updated_time" content="2017-10-16T08:45:32.852Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/slave_control.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/uploadpic.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/interrupt_detection.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/data_sel.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/parameter.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/ad_sample_top.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/HT82V26_SPI_TOP.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/ciscon.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/sipro.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/image_process.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/star/correct.jpg">
+<meta property="og:updated_time" content="2017-10-16T12:35:23.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Star &amp;&amp; FPGA">
 <meta name="twitter:description" content="本文介绍BIAC期间关于XX打印扫描一体机项目FPGA工程部分">
@@ -361,14 +372,14 @@
 
       
         <p>本文介绍BIAC期间关于XX打印扫描一体机项目FPGA工程部分<br><a id="more"></a></p>
-<h1 id="一、系统整体方案"><a href="#一、系统整体方案" class="headerlink" title="一、系统整体方案"></a>一、系统整体方案</h1><blockquote>
+<h1 id="系统整体方案"><a href="#系统整体方案" class="headerlink" title="系统整体方案"></a><font size="5">系统整体方案</font></h1><blockquote>
 <p>系统框图</p>
 </blockquote>
 <ul>
 <li>系统外部框图参见文件“star.vsdx”</li>
 <li>系统内部顶层框图参见工程的RTL文件</li>
 </ul>
-<h1 id="二、工作流程的相关说明"><a href="#二、工作流程的相关说明" class="headerlink" title="二、工作流程的相关说明"></a>二、工作流程的相关说明</h1><blockquote>
+<h1 id="工作流程的相关说明"><a href="#工作流程的相关说明" class="headerlink" title="工作流程的相关说明"></a><font size="5">工作流程的相关说明</font></h1><blockquote>
 <ol>
 <li>打印主控板把采集相关的参数通过spi通信方式发送至FPGA</li>
 <li>FPGA通过emif通信方式将采集参数发送至DSP解析</li>
@@ -382,7 +393,7 @@
 </li>
 </ol>
 </blockquote>
-<h1 id="三、各个模块之间通信的相关接口"><a href="#三、各个模块之间通信的相关接口" class="headerlink" title="三、各个模块之间通信的相关接口"></a>三、各个模块之间通信的相关接口</h1><ul>
+<h1 id="各个模块之间通信的相关接口"><a href="#各个模块之间通信的相关接口" class="headerlink" title="各个模块之间通信的相关接口"></a><font size="5">各个模块之间通信的相关接口</font></h1><ul>
 <li><p>晶振与FPGA</p>
 <blockquote>
 <p>cis_input:48M 晶振源时钟</p>
@@ -414,8 +425,119 @@
 </blockquote>
 </li>
 </ul>
-<h1 id="四、系统内部IP核的接口和功能描述"><a href="#四、系统内部IP核的接口和功能描述" class="headerlink" title="四、系统内部IP核的接口和功能描述"></a>四、系统内部IP核的接口和功能描述</h1><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/cis_generate.jpg"></p>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1>
+<h1 id="系统内部IP核的接口和功能描述"><a href="#系统内部IP核的接口和功能描述" class="headerlink" title="系统内部IP核的接口和功能描述"></a><font size="5">系统内部IP核的接口和功能描述</font></h1><h2 id="时钟分频模块"><a href="#时钟分频模块" class="headerlink" title="时钟分频模块 "></a><font size="4">时钟分频模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/cis_generate.jpg"><br>&gt;</p>
+<ul>
+<li>输入为晶振源时钟：48m</li>
+<li>输出c0为48m时钟</li>
+<li>输出c1为96m时钟</li>
+<li>输出c2为120m时钟</li>
+<li>输出locked为锁相环复位信号</li>
+</ul>
+<h2 id="spi控制模块"><a href="#spi控制模块" class="headerlink" title="spi控制模块 "></a><font size="4">spi控制模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/slave_control.jpg"></p>
+<blockquote>
+<p>此模块用来实现与打印机主控板之间的通信,将打印机主控板发下来的命令通过spi_cs的上升沿一次存入ram中，并将emif发送下来的数据通过此模块转成串行数据发送到打印机主控板，实现双向通信。</p>
+</blockquote>
+<p>&gt;</p>
+<ul>
+<li>clk120m  ：系统工作时钟，用更高频率的时钟进行检测，能够提升采样准确性</li>
+<li>spi_cs    : spi通信的使能信号，低电平有效</li>
+<li>spi_in_data：spi发送下来的串行数据</li>
+<li>spi_sclk : spi工作时钟，在上升沿读取数据</li>
+<li>dsp_to_spi[7..0]: dsp经由FPGA需要转发给打印机主控板的数据</li>
+<li>In_spi_data：dsp_to_spi[7..0]在spi_cs低电平期间经由sclk转化而成的串行数据</li>
+<li>Spi_save_flag ： spi配置信息存取结束标记</li>
+<li>Wr_en: spi配置信号存进ram的写实能</li>
+<li>spi_to_dsp[7..0]:spi_in_data在spi_cs低电平期间经由sclk转化而成的1byte宽的数据</li>
+<li>Ram_waddr[8..0]：将spi_to_dsp存进ram的写地址，通过spi_cs的下降沿次数进行增加</li>
+</ul>
+<h2 id="dsp数据上传模块"><a href="#dsp数据上传模块" class="headerlink" title="dsp数据上传模块 "></a><font size="4">dsp数据上传模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/uploadpic.jpg"></p>
+<blockquote>
+<p>此模块用来接收emif传送至FPGA的图像数据，存进ram中，发送了513B的数据，ram大小为512B，发送的第一个数据的dsp_we用来开启ram的写使能。数据存完之后，拉一个spi_start_fetch信号由低到高，用来给DSP通知spi来拿数据，并且用此信号区分此时的spi_cs和传配置信息时的spi_cs，对spi_cs进行计数，spi取数据结束后，发送脉冲中断给dsp,dsp可以再一次的向emif写入数据，重复上述过程，实现dsp将图像数据经过FPGA转发给spi的过程。</p>
+</blockquote>
+<p>&gt;</p>
+<ul>
+<li>Dsp_we:dsp的写时钟，用此时钟来改变ram的写地址；</li>
+<li>Spi_cs:spi的低电平使能时钟，在一个spi_cs下降沿周期，传一个8位数据；</li>
+<li>Dsp_to_fpga_over:dsp通过emif发送的一个包存取完毕，可以让dsp通知spi来拿数据</li>
+<li>Spi_fetch_flag：spi一个数据包取完毕，可以通知dsp继续通过emif方式发送数据包</li>
+<li>Dsp_to_spi[7..0]:以spi_cs为单位从ram中取出来的1byte数据，通过slave模块转成串行数据之后送到spi串行数据线上</li>
+</ul>
+<h2 id="中断控制模块"><a href="#中断控制模块" class="headerlink" title="中断控制模块 "></a><font size="4">中断控制模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/interrupt_detection.jpg"></p>
+<blockquote>
+<p>此模块用来处理和dsp之间的中断，（之前打算用此模块处理spi配置信息接收完毕中断，spi读取emif发送至ram的数据完毕中断，cis管行采集中断）现在由于一边采集一边发送的缘故，spi读取emif发送至ram的数据完毕中断与cis管行采集中断并行，所以讲cis管行采集中断单独拉出，后续由于dsp会在数据包没有发送完毕时，提前通知打印机主控板，所以增加了存emif包中断，dsp在收到此中断之后通知打印机主控板拿数据，避免冲突。通过一个中断线做中断触发，用不同的地址来标记不同的中断类型。</p>
+</blockquote>
+<p>&gt;</p>
+<ul>
+<li>Dsp_oe：dsp的emif读时钟信号</li>
+<li>Spi_fetch_flag: spi取数据完毕中断</li>
+<li>Spi_save_flag：spi配置信息发送完毕信号</li>
+<li>Interrupt_detection:混合中断标记</li>
+<li>Inter_data[7..0]:emif对应地址上的数据值，当某个地址对应的中断类型有中断产生时，我们将此地址上的值设置全1，如果没有中断，则设置为全0。供dsp判断区分。详细原理参见代码的注释。</li>
+</ul>
+<h2 id="数据选择模块"><a href="#数据选择模块" class="headerlink" title="数据选择模块 "></a><font size="4">数据选择模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/data_sel.jpg"></p>
+<blockquote>
+<p>当有中断的时候，用interrupt_detection=‘1’来选择数据中断数据，进入中断，读取对应地址的中断类型，输出中断数据，当没有中断产生时，输出打印机主控板的配置信息数据。Rd_wr用来控制读写方向，当rd_wr为1时，dsp从FPGA读数据。<br>直到中断函数内读取完毕之后，将rd_wr置为0，与此同时，FPGA内部将对应中断地址上的数据和分中断标记清空，此时interrupt_detection被拉回0.</p>
+</blockquote>
+<h2 id="参数解析模块"><a href="#参数解析模块" class="headerlink" title="参数解析模块 "></a><font size="4">参数解析模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/parameter.jpg"></p>
+<blockquote>
+<p>根据emif通信，用不同地址来传递图像采集参数</p>
+</blockquote>
+<p>&gt;</p>
+<ul>
+<li>Startorend：cis采图启动信号</li>
+<li>Color_mode：采图颜色模式选择信号</li>
+<li>LineFrequenceM:行频信号</li>
+<li>scanlineH: 扫描行数（代码里面并没有用之作相关设置）</li>
+<li>Which_dpi：当前选择的dpi采图模式</li>
+</ul>
+<h2 id="Ad-sample-top-A-D芯片，cis工作配置模块"><a href="#Ad-sample-top-A-D芯片，cis工作配置模块" class="headerlink" title="Ad_sample_top:A/D芯片，cis工作配置模块 "></a><font size="4">Ad_sample_top:A/D芯片，cis工作配置模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/ad_sample_top.jpg"></p>
+<blockquote>
+<p>此模块用96m的输入时钟，产生AD芯片工作的ADCCLK时钟以及CDSCLK时钟，并且分频产生48m时钟和8m时钟供其他部分使用，用8m时钟计数产生cis行信号si，用LineFrequence 来控制一个si的持续时间，用来控制采图的行周期。<br>注意将8m时钟，ADCCLK用同一个模块分频产生而不是cis_pll产生。这样可以避免数据时钟的紊乱，造成采样三段错乱的问题。在其他项目工程中同样适用。</p>
+</blockquote>
+<h2 id="HT82V26-SPI-TOP-A-D芯片工作模式配置模块"><a href="#HT82V26-SPI-TOP-A-D芯片工作模式配置模块" class="headerlink" title="HT82V26_SPI_TOP:A/D芯片工作模式配置模块 "></a><font size="4">HT82V26_SPI_TOP:A/D芯片工作模式配置模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/HT82V26_SPI_TOP.jpg"></p>
+<blockquote>
+<p>此模块用来配置AD芯片的工作模式，具体参考HT82V26的芯片手册及本人本科生毕业论文部分。<br>我们常用offset来调控各段的配置电压，可以用PGA来控制各段的增益，用来改变亮度。<br>基于此，可以在同一次测试中，在不同的条件下采用不同的工作模式，来达到采集不同效果图像的目的。</p>
+</blockquote>
+<h2 id="ciscon：cis管开关灯模块"><a href="#ciscon：cis管开关灯模块" class="headerlink" title="ciscon：cis管开关灯模块 "></a><font size="4">ciscon：cis管开关灯模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/ciscon.jpg"></p>
+<blockquote>
+<p>此模块根据输出的采图颜色模式参数color_mode，来控制开关led灯的方式，在其实开到某个灯时，输出一个启动order顺序信号，来控制视频口控制模块的帧同步信号，保证视频口接收到的各行数据的图像顺序。<br>通过si来切换采图的开关种类，实现对不同光的图像采集，在每个si周期内，空过开灯的持续时间，来控制曝光时间，以此来控制采样点的累积电压积分值，控制采样点的图像亮度。</p>
+</blockquote>
+<p>&gt;</p>
+<ul>
+<li>Cis_start:cis采图启动信号，高电平有效</li>
+<li>Si:cis管采图行周期信号</li>
+<li>Color_mode：cis管采图颜色组合模式</li>
+<li>Which_dpi：dpi模式选择，用此来控制cnt1/2的输出，选择对应的dpi模式</li>
+<li>Ad1oe:AD芯片工作使能信号，低有效，长置0即可</li>
+<li>Cnt1:cis管工作dpi模式选择信号</li>
+<li>Led…: cis管各光源控制信号</li>
+<li>Order： 用来控制视频口帧信号，保证视频口各行数据的颜色顺序</li>
+</ul>
+<h2 id="Sipro-视频口控制模块"><a href="#Sipro-视频口控制模块" class="headerlink" title="Sipro:视频口控制模块 "></a><font size="4">Sipro:视频口控制模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/sipro.jpg"></p>
+<blockquote>
+<p>此模块用来输出视频口接收图像的帧信号VD ，以及视频按行存取数据的行信号HD，和视频的行中断信号供dsp来计算手机到的图像行数。用save来控制开始拼图和开始校正的各行起始信号。Save_pre用来提前对数据做处理。（如果要对600dpi做拆行处理，需要在一个si周期内对HD两次输出）</p>
+</blockquote>
+<h2 id="Image-process-图像拼接模块"><a href="#Image-process-图像拼接模块" class="headerlink" title="Image_process:图像拼接模块 "></a><font size="4">Image_process:图像拼接模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/image_process.jpg"></p>
+<blockquote>
+<p>此模块按照管子的参数特性，将两跟管子的的8M*8位*3通道*2管的数据流改成24M*16位的数据流送到视频口，并保证输出顺序先出去一跟管子，再输出另一个管子，并按照实际物理像素顺序输出。<br>其中处理过程如下，因为一行的点数为2592个点，上下管有5184个点，必须开一个8K的ram,一段用来供拼接，一段用来供读取，一共需要16K的内存来进行图像拼接处理。<br>8M*8位*3通道*2管，每次接收到两个8位数据之后，合成一个16位宽的数据，每个通道432个16位宽的数据，变成4M*16位*3通道*2管的数据流，再按照通道顺序，按432一段，以24M时钟循环遍历，循环写入对应的六个地址，读出时则变成有物理顺序的24M*16位数据流，输出供后续校正。</p>
+<p>续：由于dsp存包是按照256的整数倍，而300dpi一行2592个点，后面也有一些无效点，所以裁剪成2560个点，在将数据流改变存进ram进行乒乓的过程中，用dpi参数进行选择。在乒乓读出的过程中，也进行乒乓选择，实现了多dpi模式，并且复用同一部分的ram资源，减小了资源占用。处理600dpi图像的过程中，一行10384个点，用8K+4k的ram进行存储，避免了用16K进行存储的资源占用过大（开辟内部ram必须是2的幂次方，芯片资源只有30k）</p>
+</blockquote>
+<h2 id="Correct-图像拼接模块"><a href="#Correct-图像拼接模块" class="headerlink" title="Correct:图像拼接模块 "></a><font size="4">Correct:图像拼接模块</font> </h2><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/star/correct.jpg"></p>
+<blockquote>
+<p>校正模式采用y=kx+b的模式，针对每个采样点，输出一个k和b，这里b采用8bits宽的数据，由于FPGA芯片原因，没有足够的ram供存八位的k参数，我们采用4bits来存取k参数。<br>根据分析，最后采用的k值应该介于1到1.5之间，所以我们用k的1来代表1/32,由于FPGA中浮点数会丢失精度，所以在kx+b运算之前，将k和b扩大了128倍，得到y之后所辖128。<br>AD1_cor_temp1&lt;= conv_std_logic_vector(((conv_integer(K) <em> 4 + 128) </em> conv_integer(AD1_DATA)),16) + (‘0’ &amp; B &amp; “0000000”);<br>即先将ram中的k乘以1/32,再扩大128倍，即乘上4。再加上前面的1扩大之后的128，即得到扩大了128的被介于1~1.5之间的k,对b也做同样扩大处理，最后输出AD1_cor_temp1右移7位即可。</p>
+<p>续：通过cor_select来标记当前参数属于哪个颜色分类，通过which_dpi来指明当前dpi模式，通过sram_cs,sram_oe,sram_we,sram_addr,sram_data控制外挂的sram芯片，用来存储静态校正参数。</p>
+</blockquote>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a><font size="5">小结</font></h1><p>&gt;</p>
+<ul>
+<li>此工程能够通过spi方式和打印机控制板通信，通过emif以及vp口和dsp通信，通过相关IO和cis管以及A/D芯片通信。能够将扫描指令及参数命令转发给dsp解析，然后通过emif发送给fpga控制采图。</li>
+<li>实现了一个中断源控制多种中断类型的中断方式。</li>
+<li>Fpga根据采图命令和参数来控制cis采集图像并且经过A/D转换，对数据进行图像拼接处理，图像校正处理之后发送至VP口，给dsp做进一步的压缩处理，变成jpeg图像之再通过spi发送给打印机控制板。</li>
+<li>在校正指令下，在一次采集过程中，根据dpi参数，分别采集多种dpi模式图像供dsp计算参数，dsp进行存储（掉电保存）。之后上电发送一次校正参数给fpga存进外挂sram。</li>
+<li>在采图指令，根据dpi去sram对应地址取出参数，进行校正计算。采集出校正的图像。</li>
+<li>实现了与dsp的emif通信，vp口通信，cis控制，A/D控制，spi通信，外挂sram的存取控制。能够在打印机主控板给出不同参数指令的情况下，实现多种dpi图像的采集，图像数据的流控制实现拼接，图像的校正处理。并且只用很少的内部ram资源（芯片只有30k），并且有外挂的sram进行校正系数的存储，控制了成本，且对各个灰度分量进行校正处理，提升了校正效果。</li>
+</ul>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p><a href="https://llemily.github.io/2017/10/16/Question&amp;Solution/" target="_blank" rel="external">https://llemily.github.io/2017/10/16/Question&amp;Solution/</a></p>
+
       
     </div>
     
@@ -610,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、系统整体方案"><span class="nav-number">1.</span> <span class="nav-text">一、系统整体方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、工作流程的相关说明"><span class="nav-number">2.</span> <span class="nav-text">二、工作流程的相关说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、各个模块之间通信的相关接口"><span class="nav-number">3.</span> <span class="nav-text">三、各个模块之间通信的相关接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、系统内部IP核的接口和功能描述"><span class="nav-number">4.</span> <span class="nav-text">四、系统内部IP核的接口和功能描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统整体方案"><span class="nav-number">1.</span> <span class="nav-text">系统整体方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工作流程的相关说明"><span class="nav-number">2.</span> <span class="nav-text">工作流程的相关说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#各个模块之间通信的相关接口"><span class="nav-number">3.</span> <span class="nav-text">各个模块之间通信的相关接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统内部IP核的接口和功能描述"><span class="nav-number">4.</span> <span class="nav-text">系统内部IP核的接口和功能描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#时钟分频模块"><span class="nav-number">4.1.</span> <span class="nav-text">时钟分频模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spi控制模块"><span class="nav-number">4.2.</span> <span class="nav-text">spi控制模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dsp数据上传模块"><span class="nav-number">4.3.</span> <span class="nav-text">dsp数据上传模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中断控制模块"><span class="nav-number">4.4.</span> <span class="nav-text">中断控制模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据选择模块"><span class="nav-number">4.5.</span> <span class="nav-text">数据选择模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数解析模块"><span class="nav-number">4.6.</span> <span class="nav-text">参数解析模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ad-sample-top-A-D芯片，cis工作配置模块"><span class="nav-number">4.7.</span> <span class="nav-text">Ad_sample_top:A/D芯片，cis工作配置模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HT82V26-SPI-TOP-A-D芯片工作模式配置模块"><span class="nav-number">4.8.</span> <span class="nav-text">HT82V26_SPI_TOP:A/D芯片工作模式配置模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ciscon：cis管开关灯模块"><span class="nav-number">4.9.</span> <span class="nav-text">ciscon：cis管开关灯模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sipro-视频口控制模块"><span class="nav-number">4.10.</span> <span class="nav-text">Sipro:视频口控制模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-process-图像拼接模块"><span class="nav-number">4.11.</span> <span class="nav-text">Image_process:图像拼接模块 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Correct-图像拼接模块"><span class="nav-number">4.12.</span> <span class="nav-text">Correct:图像拼接模块 </span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>

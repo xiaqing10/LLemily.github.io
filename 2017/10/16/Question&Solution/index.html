@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="LLemily">
 <meta property="og:description" content="本文总结在BIAC参与的几个项目中遇到的问题和解决方案">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-16T07:55:59.695Z">
+<meta property="og:updated_time" content="2017-10-16T12:34:50.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Question &amp;&amp; Solution">
 <meta name="twitter:description" content="本文总结在BIAC参与的几个项目中遇到的问题和解决方案">
@@ -359,19 +359,19 @@
 
       
         <p>本文总结在BIAC参与的几个项目中遇到的问题和解决方案<br><a id="more"></a></p>
-<h1 id="刑侦足迹采集设备开发过程中遇到的问题和解决办法"><a href="#刑侦足迹采集设备开发过程中遇到的问题和解决办法" class="headerlink" title="刑侦足迹采集设备开发过程中遇到的问题和解决办法"></a>刑侦足迹采集设备开发过程中遇到的问题和解决办法</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<h1 id="刑侦足迹采集设备开发过程中遇到的问题和解决办法"><a href="#刑侦足迹采集设备开发过程中遇到的问题和解决办法" class="headerlink" title="刑侦足迹采集设备开发过程中遇到的问题和解决办法"></a><font size="5">刑侦足迹采集设备开发过程中遇到的问题和解决办法</font></h1><h2 id="ntroduction"><a href="#ntroduction" class="headerlink" title="ntroduction"></a><font size="4">ntroduction</font></h2><blockquote>
 <p>该系统使用cis采集管采集，然后经过A/D芯片将模拟信号转化成数字信号，然后通过两片sdram实现乒乓缓存，最后通过usb芯片传输给PC段进行图像处理。在使用上，通过手工推动设备，在足迹上推动。进行图像采集。</p>
 </blockquote>
-<h2 id="Question1"><a href="#Question1" class="headerlink" title="Question1"></a>Question1</h2><blockquote>
+<h2 id="uestion1"><a href="#uestion1" class="headerlink" title="uestion1"></a><font size="4">uestion1</font></h2><blockquote>
 <p>如何判断开始采集，如何判断采集结束?</p>
 </blockquote>
-<h2 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1"></a>Solution1</h2><blockquote>
+<h2 id="olution1"><a href="#olution1" class="headerlink" title="olution1"></a><font size="4">olution1</font></h2><blockquote>
 <p>在设备两侧安装有带有码盘（每转动一周，输出500个脉冲）的滚轮。在上电之后，对码盘脉冲计数，达到一定数量之后（说明设备在进行滚动）开启图像采集。<br>判断一定时间内的码盘数量低于某个值（说明设备停止运动）时，关闭图像采集。</p>
 </blockquote>
-<h2 id="Question2"><a href="#Question2" class="headerlink" title="Question2"></a>Question2</h2><blockquote>
+<h2 id="uestion2"><a href="#uestion2" class="headerlink" title="uestion2"></a><font size="4">uestion2</font></h2><blockquote>
 <p>因为设备是手持推动，而CIS管的图像采集是逐行扫描的，如果以一个固定时间进行采集，图像会按照推动的快慢在不同的区域出现扭曲变形。</p>
 </blockquote>
-<h2 id="Solution2"><a href="#Solution2" class="headerlink" title="Solution2"></a>Solution2</h2><blockquote>
+<h2 id="olution2"><a href="#olution2" class="headerlink" title="olution2"></a><font size="4">olution2</font></h2><blockquote>
 <ul>
 <li><p>我们初期决定通过让CIS按照码盘的速度来进行图像采集，即根据对上一个码盘周期的时间长度来决定CIS管采集的行周期。但是由于实际采集的过程中码盘差距太大，图像质量也不理想。</p>
 </li>
@@ -381,19 +381,19 @@
 </li>
 </ul>
 </blockquote>
-<h1 id="证照仪图像采集设备开发过程中遇到的问题和解决办法"><a href="#证照仪图像采集设备开发过程中遇到的问题和解决办法" class="headerlink" title="证照仪图像采集设备开发过程中遇到的问题和解决办法"></a>证照仪图像采集设备开发过程中遇到的问题和解决办法</h1><h2 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<h1 id="证照仪图像采集设备开发过程中遇到的问题和解决办法"><a href="#证照仪图像采集设备开发过程中遇到的问题和解决办法" class="headerlink" title="证照仪图像采集设备开发过程中遇到的问题和解决办法"></a><font size="5">证照仪图像采集设备开发过程中遇到的问题和解决办法</font></h1><h2 id="ntroduction-1"><a href="#ntroduction-1" class="headerlink" title="ntroduction"></a><font size="4">ntroduction</font></h2><blockquote>
 <p>该系统使用cis采集管采集，然后经过A/D芯片将模拟信号转化成数字信号，然后通过两片sdram实现乒乓缓存，最后通过usb芯片传输给PC段进行图像处理。在使用上，通过插入证照，遮住红外对管，机械结构带动CIS管运动，进行图像采集。机械结构的设计上一定程度的借鉴了刑侦足迹采集设备的经验。</p>
 </blockquote>
-<h2 id="Question1-1"><a href="#Question1-1" class="headerlink" title="Question1"></a>Question1</h2><blockquote>
+<h2 id="uestion1-1"><a href="#uestion1-1" class="headerlink" title="uestion1"></a><font size="4">uestion1</font></h2><blockquote>
 <p>在图像采集的过程中出现紫外图像很暗。</p>
 </blockquote>
-<h2 id="Solution1-1"><a href="#Solution1-1" class="headerlink" title="Solution1"></a>Solution1</h2><blockquote>
+<h2 id="olution1-1"><a href="#olution1-1" class="headerlink" title="olution1"></a><font size="4">olution1</font></h2><blockquote>
 <p>设备上，机械结构带动CIS运动，CIS管扫描证照的过程中，有一个往返的过程，我们在CIS返回的过程中，更改A/D芯片的配置，配置可编程增益放大器的系数。提升紫外的图像的亮度。</p>
 </blockquote>
-<h1 id="xx打印扫描一体机开发过程中遇到的问题和解决办法"><a href="#xx打印扫描一体机开发过程中遇到的问题和解决办法" class="headerlink" title="xx打印扫描一体机开发过程中遇到的问题和解决办法"></a>xx打印扫描一体机开发过程中遇到的问题和解决办法</h1><h2 id="Question1-2"><a href="#Question1-2" class="headerlink" title="Question1"></a>Question1</h2><blockquote>
+<h1 id="xx打印扫描一体机开发过程中遇到的问题和解决办法"><a href="#xx打印扫描一体机开发过程中遇到的问题和解决办法" class="headerlink" title="xx打印扫描一体机开发过程中遇到的问题和解决办法"></a><font size="5">xx打印扫描一体机开发过程中遇到的问题和解决办法</font></h1><h2 id="uestion1-2"><a href="#uestion1-2" class="headerlink" title="uestion1"></a><font size="4">uestion1</font></h2><blockquote>
 <p>方案的确定:xx公司希望能够实验室提供参数可变的，多dpi工作模式（200+300+600）的图像采集部分的功能，并且他们只能给我们提供数量有限的接口进行图像传输，希望得到的数据流就是正确的图像数据，并且对出图速度（标准是采集结束后）和图像大小做了相关限制。因为最后设备用于银行，对方不希望我们在其电脑上按照任何桌面处理程序。所以必须由实验室在图像处理并压缩，并且支持在线升级等等。</p>
 </blockquote>
-<h2 id="Solution1-2"><a href="#Solution1-2" class="headerlink" title="Solution1"></a>Solution1</h2><blockquote>
+<h2 id="olution1-2"><a href="#olution1-2" class="headerlink" title="olution1"></a><font size="4">olution1</font></h2><blockquote>
 <ul>
 <li><p>第一轮讨论，我们尝试使用实验室老一套方案，DSP+CIS+A/D+SDRAM+USB的方案来提供图像。因为USB的速度够快，能够满足图像速度的要求，通过dsp与打印机交互来对参数做解析，通过emif通信来给FPGA发参数控制图像采集，通过USB来将图像直接传给PC端。这个方案的不足就是，首先，使用USB与PC进行通信，需要在PC端安装驱动，银行出于安全方向的考虑，不希望采用此方案，并且这样传输的图像数据量比较大，一张图像可能达到几十M，不利于存储，xx方希望我们在FPGA实现图像的压缩算法，第一，实现难度较大，并没有相关方面的基础。第二，可能要增加额外的存储空间，增加成本。</p>
 </li>
@@ -403,7 +403,7 @@
 </li>
 </ul>
 </blockquote>
-<h2 id="Introduction-2"><a href="#Introduction-2" class="headerlink" title="Introduction "></a>Introduction </h2><ol>
+<h2 id="ntroduction-2"><a href="#ntroduction-2" class="headerlink" title="ntroduction "></a><font size="4">ntroduction </font></h2><ol>
 <li>打印主控板把采集相关的参数通过spi通信方式发送至FPGA</li>
 <li>FPGA通过emif通信方式将采集参数发送至DSP解析</li>
 <li>DSP解析完成后通过emif通信发送给FPGA，控制FPGA采图</li>
@@ -415,7 +415,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><blockquote>
+<h2 id="uestions"><a href="#uestions" class="headerlink" title="uestions"></a><font size="4">uestions</font></h2><blockquote>
 <ol>
 <li><p>spi通信方式的调试。<br>Spi通信的测试是此方案的关键，采集指令和参数以及最后的图像数据都通过这个方式传输，需要在保证一定速度的同时，保证100%的准确率。</p>
 </li>
@@ -431,7 +431,7 @@
 </li>
 </ol>
 </blockquote>
-<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions:"></a>Solutions:</h2><blockquote>
+<h2 id="olutions"><a href="#olutions" class="headerlink" title="olutions:"></a><font size="4">olutions:</font></h2><blockquote>
 <ol>
 <li><p>通过与打印机主控板的交流，规定好发送数据的起始和结束标识，数据总长度可变，保证发送参数的灵活和方便，将参数存进FPGA芯片的内部ram中供dsp读出进行解析。通过和dsp的交流，规定好一次只发送一个512字节的数据包，将数据存进内部ram中供spi主机读取。调试spi通信状态机的切换，在dsp对FPGA进行读写操作时，由dsp提供读写时钟操作ram，由dsp提供读写地址，在保持地址不变的条件下，对读写的异步时钟与系统时钟进行与操作，对同一个地址多次读写，以免异步时钟扰动出现漏读漏写的情况。</p>
 </li>
@@ -646,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刑侦足迹采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">1.</span> <span class="nav-text">刑侦足迹采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1"><span class="nav-number">1.2.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1"><span class="nav-number">1.3.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question2"><span class="nav-number">1.4.</span> <span class="nav-text">Question2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution2"><span class="nav-number">1.5.</span> <span class="nav-text">Solution2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#证照仪图像采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">2.</span> <span class="nav-text">证照仪图像采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1-1"><span class="nav-number">2.2.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1-1"><span class="nav-number">2.3.</span> <span class="nav-text">Solution1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xx打印扫描一体机开发过程中遇到的问题和解决办法"><span class="nav-number">3.</span> <span class="nav-text">xx打印扫描一体机开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1-2"><span class="nav-number">3.1.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1-2"><span class="nav-number">3.2.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.3.</span> <span class="nav-text">Introduction </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Questions"><span class="nav-number">3.4.</span> <span class="nav-text">Questions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solutions"><span class="nav-number">3.5.</span> <span class="nav-text">Solutions:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刑侦足迹采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">1.</span> <span class="nav-text">刑侦足迹采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ntroduction"><span class="nav-number">1.1.</span> <span class="nav-text">ntroduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uestion1"><span class="nav-number">1.2.</span> <span class="nav-text">uestion1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#olution1"><span class="nav-number">1.3.</span> <span class="nav-text">olution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uestion2"><span class="nav-number">1.4.</span> <span class="nav-text">uestion2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#olution2"><span class="nav-number">1.5.</span> <span class="nav-text">olution2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#证照仪图像采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">2.</span> <span class="nav-text">证照仪图像采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ntroduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">ntroduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uestion1-1"><span class="nav-number">2.2.</span> <span class="nav-text">uestion1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#olution1-1"><span class="nav-number">2.3.</span> <span class="nav-text">olution1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xx打印扫描一体机开发过程中遇到的问题和解决办法"><span class="nav-number">3.</span> <span class="nav-text">xx打印扫描一体机开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#uestion1-2"><span class="nav-number">3.1.</span> <span class="nav-text">uestion1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#olution1-2"><span class="nav-number">3.2.</span> <span class="nav-text">olution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ntroduction-2"><span class="nav-number">3.3.</span> <span class="nav-text">ntroduction </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uestions"><span class="nav-number">3.4.</span> <span class="nav-text">uestions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#olutions"><span class="nav-number">3.5.</span> <span class="nav-text">olutions:</span></a></li></ol></li></ol></div>
             
 
           </div>

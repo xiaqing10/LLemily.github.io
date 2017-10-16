@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="LLemily">
 <meta property="og:description" content="如何在linux环境下开始写C语言程序">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-04T11:09:09.816Z">
+<meta property="og:updated_time" content="2017-10-16T12:34:50.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux C语言">
 <meta name="twitter:description" content="如何在linux环境下开始写C语言程序">
@@ -359,7 +359,7 @@
 
       
         <p>如何在linux环境下开始写C语言程序<br><a id="more"></a></p>
-<h1 id="Linux-C语言编程基础"><a href="#Linux-C语言编程基础" class="headerlink" title="Linux C语言编程基础"></a>Linux C语言编程基础</h1><h2 id="多个源文件共同编译1"><a href="#多个源文件共同编译1" class="headerlink" title="多个源文件共同编译1"></a>多个源文件共同编译1</h2><pre><code>hello.c：
+<h1 id="Linux-C语言编程基础"><a href="#Linux-C语言编程基础" class="headerlink" title="Linux C语言编程基础"></a><font size="5">Linux C语言编程基础</font></h1><h2 id="多个源文件共同编译1"><a href="#多个源文件共同编译1" class="headerlink" title="多个源文件共同编译1"></a><font size="4">多个源文件共同编译1</font></h2><pre><code>hello.c：
 #include &lt;stdio.h&gt;
 int main()
 {
@@ -385,7 +385,7 @@ int max(int a,int b)
 </code></pre><blockquote>
 <p>输出可执行文件hello.out,直接./hello.out即可执行。</p>
 </blockquote>
-<h2 id="多个源文件共同编译2"><a href="#多个源文件共同编译2" class="headerlink" title="多个源文件共同编译2"></a>多个源文件共同编译2</h2><pre><code>hello.c：
+<h2 id="多个源文件共同编译2"><a href="#多个源文件共同编译2" class="headerlink" title="多个源文件共同编译2"></a><font size="4">多个源文件共同编译2</font></h2><pre><code>hello.c：
 #include &lt;stdio.h&gt;
 #include &quot;max.c&quot;
 int main()
@@ -412,7 +412,7 @@ int max(int a,int b)
 </code></pre><blockquote>
 <p>输出可执行文件hello.out,直接./hello.out即可执行</p>
 </blockquote>
-<h2 id="多个源文件共同编译3"><a href="#多个源文件共同编译3" class="headerlink" title="多个源文件共同编译3"></a>多个源文件共同编译3</h2><pre><code>hello.c：
+<h2 id="多个源文件共同编译3"><a href="#多个源文件共同编译3" class="headerlink" title="多个源文件共同编译3"></a><font size="4">多个源文件共同编译3</font></h2><pre><code>hello.c：
 #include &lt;stdio.h&gt;
 int main()
 {
@@ -442,7 +442,7 @@ int max(int a,int b)
 </code></pre><blockquote>
 <p>这样可以加快整个工程的编译速度,因为某些未修改的部分使用的已经编译好的obj文件<br>我们可以将不会再修改的函数,公共框架,公共类编译生成静态库,将需要修改的业务逻辑部分做成可执行代码。<br>为了让代码可读性更强,我们可以在.h头文件中建立对相关函数的声明,再其他模块中引入相关头文件。</p>
 </blockquote>
-<h2 id="多个源文件共同编译4-Makefile"><a href="#多个源文件共同编译4-Makefile" class="headerlink" title="多个源文件共同编译4(Makefile)"></a>多个源文件共同编译4(Makefile)</h2><blockquote>
+<h2 id="多个源文件共同编译4-Makefile"><a href="#多个源文件共同编译4-Makefile" class="headerlink" title="多个源文件共同编译4(Makefile)"></a><font size="4">多个源文件共同编译4(Makefile)</font></h2><blockquote>
 <p>多源程序共同编译,使用gcc xxx.o xxx.o …命令会增加书写复杂度,可以利用Makefile来解决此问题</p>
 </blockquote>
 <pre><code>#this is make file
@@ -455,7 +455,7 @@ min.o:min.c
 </code></pre><blockquote>
 <p>使用#来写注释,hello.out需要文件max.o,min.o,hello.c通过 gcc max.o min.o hello.c -o hello.out命令得到<br>max.o需要通过max.c文件通过gcc -c max.c得到,依此类推。<br>书写完之后,执行make命令,会根据Makefile文件来执行里面的相关命令。<br>之后如果更改了hello.c文件,再此执行make命令时,由于已经编译出max.o和min.o,会省略此步骤。<br>只执行gcc max.o min.o hello.c -o hello.out操作,可以大大加快编译速度,也比直接使用gcc写一长串来的简单。</p>
 </blockquote>
-<h2 id="main函数中的return"><a href="#main函数中的return" class="headerlink" title="main函数中的return"></a>main函数中的return</h2><blockquote>
+<h2 id="main函数中的return"><a href="#main函数中的return" class="headerlink" title="main函数中的return"></a><font size="4">main函数中的return</font></h2><blockquote>
 <p>可以使用&amp;&amp;符号来将命令连接起来使用,例如</p>
 </blockquote>
 <pre><code>gcc main.c -o main.out &amp;&amp; ./main.out
@@ -480,7 +480,7 @@ stdout:hello
 </code></pre><blockquote>
 <p>./main2.out &amp;&amp; ls并没有能够正确执行ls命令,因为前一个命令的返回值是100,我们可以利用返回值来进行错误控制</p>
 </blockquote>
-<h2 id="main函数中的参数"><a href="#main函数中的参数" class="headerlink" title="main函数中的参数"></a>main函数中的参数</h2><pre><code>#include &lt;stdio.h&gt;
+<h2 id="main函数中的参数"><a href="#main函数中的参数" class="headerlink" title="main函数中的参数"></a><font size="4">main函数中的参数</font></h2><pre><code>#include &lt;stdio.h&gt;
 
 int main(int argv,char* argc[])
 {
@@ -504,7 +504,7 @@ argc[4] is 8u
 </code></pre><blockquote>
 <p>可以看到我们可以在执行文件后面加入额外参数,这些参数的个数通过int argv传入,具体参数值会以字符串格式按照数组传入char* argc[]里面</p>
 </blockquote>
-<h2 id="标准输入流、输出流以及错误流"><a href="#标准输入流、输出流以及错误流" class="headerlink" title="标准输入流、输出流以及错误流"></a>标准输入流、输出流以及错误流</h2><blockquote>
+<h2 id="标准输入流、输出流以及错误流"><a href="#标准输入流、输出流以及错误流" class="headerlink" title="标准输入流、输出流以及错误流"></a><font size="4">标准输入流、输出流以及错误流</font></h2><blockquote>
 <p><em>stdio.h</em>会提供一系列指向资源的指针。 linux会把一切设备当做文件来处理,当包含<stdio.h>的应用程序启动时,<br>会自动创建三个文件stdin,stdout,stderr,分别用来表示输入流,输出流,错误流。<br>默认的stdin指向键盘,stdout默认指向显示屏。</stdio.h></p>
 </blockquote>
 <p>实际上printf和scanf是对另外函数的封装</p>
@@ -519,7 +519,7 @@ if(***){
     fprintf(stderr,&quot;error mesaage\n&quot;);
     return 1;//not zero
 }
-</code></pre><h2 id="标准输入流、输出流以及错误流的重定向"><a href="#标准输入流、输出流以及错误流的重定向" class="headerlink" title="标准输入流、输出流以及错误流的重定向"></a>标准输入流、输出流以及错误流的重定向</h2><pre><code>main.c:
+</code></pre><h2 id="标准输入流、输出流以及错误流的重定向"><a href="#标准输入流、输出流以及错误流的重定向" class="headerlink" title="标准输入流、输出流以及错误流的重定向"></a><font size="4">标准输入流、输出流以及错误流的重定向</font></h2><pre><code>main.c:
 #include &lt;stdio.h&gt;
 int main()
 {
@@ -556,7 +556,7 @@ input the int value j:
 </code></pre><blockquote>
 <p>此方式会把默认输出到显示器上的信息输出到重定向的文件a.txt中,1表示标准输出流,2表示标准错误流,&gt;&gt;表示不覆盖输出,&gt;表示覆盖输出。使用&lt;表示重定向标准输入流,&lt;符号前面不需要数字信息。(不在赘述)例如,我们可以使用:<br>ls /etc &gt;&gt;etc.txt<br>把要显示到显示器上的文件目录信息存放在etc.txt文件中。</p>
 </blockquote>
-<h2 id="管道操作"><a href="#管道操作" class="headerlink" title="管道操作"></a>管道操作</h2><pre><code>[root@localhost imooc_c++]# ls /etc/ | grep abr
+<h2 id="管道操作"><a href="#管道操作" class="headerlink" title="管道操作"></a><font size="4">管道操作</font></h2><pre><code>[root@localhost imooc_c++]# ls /etc/ | grep abr
 abrt
 </code></pre><blockquote>
 <p>我们可以使用 | 操作符来实现管道操作,所谓管道就是对前面的输出结果用后面的条件加以过滤,<br>上述命令的意思就是对ls显示的/etc/目录下的信息,选择包含abr字符串的目录信息输出。</p>
@@ -598,7 +598,7 @@ cc avg.c -o avg.out
 5000
 0
 v= 3333.000000
-</code></pre><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ol>
+</code></pre><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a><font size="5">小结</font></h1><ol>
 <li><ul>
 <li>多个源文件编译时候,可以使用include引入.c文件,相当于直接引入代码;</li>
 <li>可以利用gcc一起编译执行,每次都需要重新编译多个文件,增加额外开销;</li>
@@ -612,7 +612,7 @@ v= 3333.000000
 </ul>
 </li>
 </ol>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a href="http://www.imooc.com/learn/248" target="_blank" rel="external">http://www.imooc.com/learn/248</a></p>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p><a href="http://www.imooc.com/learn/248" target="_blank" rel="external">http://www.imooc.com/learn/248</a></p>
 
       
     </div>
