@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="LLemily">
 <meta property="og:description" content="本文总结在BIAC参与的几个项目中遇到的问题和解决方案">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-16T07:19:34.471Z">
+<meta property="og:updated_time" content="2017-10-16T07:26:32.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Question &amp;&amp; Solution">
 <meta name="twitter:description" content="本文总结在BIAC参与的几个项目中遇到的问题和解决方案">
@@ -415,7 +415,8 @@
 </ul>
 </li>
 </ol>
-<h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><ol>
+<h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><blockquote>
+<ol>
 <li><p>spi通信方式的调试。<br>Spi通信的测试是此方案的关键，采集指令和参数以及最后的图像数据都通过这个方式传输，需要在保证一定速度的同时，保证100%的准确率。</p>
 </li>
 <li><p>中断的控制<br>中断的控制，由于在我们使用的dsp芯片上，只有两个中断源，实际在使用的过程中，当FPGA接收完打印机发送的指令和参数后，需要通过中断的方式通知dsp，FPGA的数据是逐行采集，图像通过视频口的方式发送给DSP,每行图像结束后有个行中断。以及DSP最后发送图像数据给FPGA，FPGA存储完成通知SPI取走数据后，再次通过中断的方式通知DSP继续发送下一个包的数据。如何让只有两个中断源的DSP处理多个中断事件。</p>
@@ -429,14 +430,23 @@
 <li><p>多dpi工作后内部ram的精简<br>要让一套系统支持多个dpi工作模式，需要在编译的过程同时考虑不同dpi的图像处理过程，我认为需要对不同的dpi模式开辟单独的ram空间来对图像进行处理，那么之前讨论的33.75实际上只能用来处理单一dpi模式，不符合xx方的设计要求。而且增加内部ram的方案价格上也不被接受。</p>
 </li>
 </ol>
-<h2 id="Answers"><a href="#Answers" class="headerlink" title="Answers"></a>Answers</h2><ol>
-<li>通过与打印机主控板的交流，规定好发送数据的起始和结束标识，数据总长度可变，保证发送参数的灵活和方便，将参数存进FPGA芯片的内部ram中供dsp读出进行解析。通过和dsp的交流，规定好一次只发送一个512字节的数据包，将数据存进内部ram中供spi主机读取。调试spi通信状态机的切换，在dsp对FPGA进行读写操作时，由dsp提供读写时钟操作ram，由dsp提供读写地址，在保持地址不变的条件下，对读写的异步时钟与系统时钟进行与操作，对同一个地址多次读写，以免异步时钟扰动出现漏读漏写的情况。</li>
-<li>我们分析发现，spi取走数据包和cis管图像采集行中断是同时发生的，因为最终的系统需要做到，一边采集，一边处理，一边校正，一边压缩，一边发送。所有操作是同时进行的，所以我们把这两个中断事件放在两个中断源，而FPGA接收完参数包是提前发生的，我们将此中断和取数据中断集成在一起，通过控制emif的某标志地址上的数据值来指明当前中断的中断类型。此方面扩展了中断源能够响应的事件个数，对于不同时发生的中断，可以很方便的扩展。</li>
-<li>CIS管的数据是逐行输出的，我们也逐行来对数据流做校正，而且内部ram的速度完全可以操作CIS的数据流输出，不会增加额外的处理时间。我们采用乒乓缓存的方式，将图像数据流调整之后存进一片ram中，然后操控第二行去写另外一片ram，与此同时，将第一片ram中的数据写入到视频口去。这个操作使整个系统（300dpi工作模式下）的速度提升了4-5秒。</li>
-<li>最后，我们决定采用8+4的模式，即将600dpi模式的图像一行分开存储，用一个8K+4K的内存进行存储，这样乒乓之后所用的内存空间只需要24K。能够正常运行。</li>
-<li>考虑到更换FPGA芯片正在芯片内部ram的成本比较贵，我们决定在FPGA外部外挂一个SRAM，此SRAM的读取速度可以达到10ns,地址线宽17bit（128KB）,数据线宽8bit,我们CIS管输出的数据流是48M*8M，对一个点同时取出K和B参数，需要达到96M的读速度，10ns可以满足需求。我们对各个dpi模式的RGB各个分量的校正系数进行存储（这里的存储地址可以连续存放，由于sram的地址线只有一套，不能边读边写，不适合拿来作图像预处理）。在采集过程中，根据当前采集的灰度类型，取出对应的校正参数，经过校正之后的图像色彩更符合实物。</li>
-<li>实际上在使用过程中，一个时刻只会采集一种dpi模式的图像，和之前复用中断源一样，我们考虑对内部ram进行复用，根据dpi参数，用选择器选择进入ram的数据，控制ram的地址，数据的存储方式等等，ram的读取方式以及进入校正处理的选择，最后成功的将多种dpi的数据处理方式复用在一起。在不增额外内存资源开销的同时，扩展了功能。</li>
+</blockquote>
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions:"></a>Solutions:</h2><blockquote>
+<ol>
+<li><p>通过与打印机主控板的交流，规定好发送数据的起始和结束标识，数据总长度可变，保证发送参数的灵活和方便，将参数存进FPGA芯片的内部ram中供dsp读出进行解析。通过和dsp的交流，规定好一次只发送一个512字节的数据包，将数据存进内部ram中供spi主机读取。调试spi通信状态机的切换，在dsp对FPGA进行读写操作时，由dsp提供读写时钟操作ram，由dsp提供读写地址，在保持地址不变的条件下，对读写的异步时钟与系统时钟进行与操作，对同一个地址多次读写，以免异步时钟扰动出现漏读漏写的情况。</p>
+</li>
+<li><p>我们分析发现，spi取走数据包和cis管图像采集行中断是同时发生的，因为最终的系统需要做到，一边采集，一边处理，一边校正，一边压缩，一边发送。所有操作是同时进行的，所以我们把这两个中断事件放在两个中断源，而FPGA接收完参数包是提前发生的，我们将此中断和取数据中断集成在一起，通过控制emif的某标志地址上的数据值来指明当前中断的中断类型。此方面扩展了中断源能够响应的事件个数，对于不同时发生的中断，可以很方便的扩展。</p>
+</li>
+<li><p>CIS管的数据是逐行输出的，我们也逐行来对数据流做校正，而且内部ram的速度完全可以操作CIS的数据流输出，不会增加额外的处理时间。我们采用乒乓缓存的方式，将图像数据流调整之后存进一片ram中，然后操控第二行去写另外一片ram，与此同时，将第一片ram中的数据写入到视频口去。这个操作使整个系统（300dpi工作模式下）的速度提升了4-5秒。</p>
+</li>
+<li><p>最后，我们决定采用8+4的模式，即将600dpi模式的图像一行分开存储，用一个8K+4K的内存进行存储，这样乒乓之后所用的内存空间只需要24K。能够正常运行。</p>
+</li>
+<li><p>考虑到更换FPGA芯片正在芯片内部ram的成本比较贵，我们决定在FPGA外部外挂一个SRAM，此SRAM的读取速度可以达到10ns,地址线宽17bit（128KB）,数据线宽8bit,我们CIS管输出的数据流是48M*8M，对一个点同时取出K和B参数，需要达到96M的读速度，10ns可以满足需求。我们对各个dpi模式的RGB各个分量的校正系数进行存储（这里的存储地址可以连续存放，由于sram的地址线只有一套，不能边读边写，不适合拿来作图像预处理）。在采集过程中，根据当前采集的灰度类型，取出对应的校正参数，经过校正之后的图像色彩更符合实物。</p>
+</li>
+<li><p>实际上在使用过程中，一个时刻只会采集一种dpi模式的图像，和之前复用中断源一样，我们考虑对内部ram进行复用，根据dpi参数，用选择器选择进入ram的数据，控制ram的地址，数据的存储方式等等，ram的读取方式以及进入校正处理的选择，最后成功的将多种dpi的数据处理方式复用在一起。在不增额外内存资源开销的同时，扩展了功能。</p>
+</li>
 </ol>
+</blockquote>
 
       
     </div>
@@ -632,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刑侦足迹采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">1.</span> <span class="nav-text">刑侦足迹采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1"><span class="nav-number">1.2.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1"><span class="nav-number">1.3.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question2"><span class="nav-number">1.4.</span> <span class="nav-text">Question2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution2"><span class="nav-number">1.5.</span> <span class="nav-text">Solution2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#证照仪图像采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">2.</span> <span class="nav-text">证照仪图像采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1-1"><span class="nav-number">2.2.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1-1"><span class="nav-number">2.3.</span> <span class="nav-text">Solution1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xx打印扫描一体机开发过程中遇到的问题和解决办法"><span class="nav-number">3.</span> <span class="nav-text">xx打印扫描一体机开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1-2"><span class="nav-number">3.1.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1-2"><span class="nav-number">3.2.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.3.</span> <span class="nav-text">Introduction </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Questions"><span class="nav-number">3.4.</span> <span class="nav-text">Questions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Answers"><span class="nav-number">3.5.</span> <span class="nav-text">Answers</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刑侦足迹采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">1.</span> <span class="nav-text">刑侦足迹采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1"><span class="nav-number">1.2.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1"><span class="nav-number">1.3.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question2"><span class="nav-number">1.4.</span> <span class="nav-text">Question2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution2"><span class="nav-number">1.5.</span> <span class="nav-text">Solution2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#证照仪图像采集设备开发过程中遇到的问题和解决办法"><span class="nav-number">2.</span> <span class="nav-text">证照仪图像采集设备开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1-1"><span class="nav-number">2.2.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1-1"><span class="nav-number">2.3.</span> <span class="nav-text">Solution1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xx打印扫描一体机开发过程中遇到的问题和解决办法"><span class="nav-number">3.</span> <span class="nav-text">xx打印扫描一体机开发过程中遇到的问题和解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1-2"><span class="nav-number">3.1.</span> <span class="nav-text">Question1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1-2"><span class="nav-number">3.2.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.3.</span> <span class="nav-text">Introduction </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Questions"><span class="nav-number">3.4.</span> <span class="nav-text">Questions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solutions"><span class="nav-number">3.5.</span> <span class="nav-text">Solutions:</span></a></li></ol></li></ol></div>
             
 
           </div>
