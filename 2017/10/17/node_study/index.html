@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="LLemily">
 <meta property="og:description" content="nodejs学习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-17T14:26:51.987Z">
+<meta property="og:updated_time" content="2017-10-17T14:34:42.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js">
 <meta name="twitter:description" content="nodejs学习笔记">
@@ -630,12 +630,74 @@ at Module.load (module.js:348:31)
 at Function._load (module.js:308:12) 
 at Array.0 (module.js:479:10) 
 at EventEmitter._tickCallback (node.js:192:40) 
+</code></pre><h1 id="node-js的module-export-和-export方法的区别"><a href="#node-js的module-export-和-export方法的区别" class="headerlink" title="node.js的module.export 和 export方法的区别"></a><font size="5">node.js的module.export 和 export方法的区别</font></h1><blockquote>
+<p>你可以用它创建你的模块。例如：（假设这是rocker.js文件）</p>
+</blockquote>
+<pre><code>exports.name = function() {
+    console.log(&apos;My name is Lemmy Kilmister&apos;);
+};
+</code></pre><blockquote>
+<p>在另一个文件中你这样引用</p>
+</blockquote>
+<pre><code>var rocker = require(&apos;./rocker.js&apos;);
+rocker.name(); // &apos;My name is Lemmy Kilmister&apos;
+</code></pre><blockquote>
+<p>那到底Module.exports是什么呢？它是否合法呢？</p>
+<p>其实，Module.exports才是真正的接口，exports只不过是它的一个辅助工具。　最终返回给调用的是Module.exports而不是exports。</p>
+<p>所有的exports收集到的属性和方法，都赋值给了Module.exports。当然，这有个前提，就是Module.exports本身不具备任何属性和方法。如果，Module.exports已经具备一些属性和方法，那么exports收集来的信息将被忽略。<br>修改rocker.js如下：</p>
+</blockquote>
+<pre><code>module.exports = &apos;ROCK IT!&apos;;
+exports.name = function() {
+    console.log(&apos;My name is Lemmy Kilmister&apos;);
+};
+</code></pre><blockquote>
+<p>再次引用执行rocker.js</p>
+</blockquote>
+<pre><code>var rocker = require(&apos;./rocker.js&apos;);
+rocker.name(); // TypeError: Object ROCK IT! has no method &apos;name&apos;
+</code></pre><blockquote>
+<p>发现报错：对象“ROCK IT!”没有name方法</p>
+<p>rocker模块忽略了exports收集的name方法，返回了一个字符串“ROCK IT!”。由此可知，你的模块并不一定非得返回“实例化对象”。你的模块可以是任何合法的javascript对象–boolean, number, date, JSON, string, function, array等等。</p>
+<p>你的模块可以是任何你设置给它的东西。如果你没有显式的给Module.exports设置任何属性和方法，那么你的模块就是exports设置给Module.exports的属性。</p>
+<p>下面例子中，你的模块是一个类：</p>
+</blockquote>
+<pre><code>module.exports = function(name, age) {
+    this.name = name;
+    this.age = age;
+    this.about = function() {
+        console.log(this.name +&apos; is &apos;+ this.age +&apos; years old&apos;);
+    };
+};
+
+var Rocker = require(&apos;./rocker.js&apos;);
+var r = new Rocker(&apos;Ozzy&apos;, 62);
+r.about(); // Ozzy is 62 years old
+</code></pre><blockquote>
+<p>下面例子中，你的模块是一个数组：</p>
+</blockquote>
+<pre><code>module.exports = [&apos;Lemmy Kilmister&apos;, &apos;Ozzy Osbourne&apos;, &apos;Ronnie James Dio&apos;, &apos;Steven Tyler&apos;, &apos;Mick Jagger&apos;];
+
+var rocker = require(&apos;./rocker.js&apos;);
+console.log(&apos;Rockin in heaven: &apos; + rocker[2]); //Rockin in heaven: Ronnie James Dio
+</code></pre><blockquote>
+<p>如果你想你的模块是一个特定的类型就用Module.exports。如果你想的模块是一个典型的“实例化对象”就用exports。<br>给Module.exports添加属性类似于给exports添加属性。例如：</p>
+</blockquote>
+<pre><code>module.exports.name = function() {
+    console.log(&apos;My name is Lemmy Kilmister&apos;);
+};
+</code></pre><blockquote>
+<p>同样，exports是这样的</p>
+</blockquote>
+<pre><code>exports.name = function() {
+    console.log(&apos;My name is Lemmy Kilmister&apos;);
+};
 </code></pre><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a><font size="5">小结</font></h1><ol>
 <li>第一部分介绍了可交互式运行环境-REPL。开发者可以在该环境中很方便的输入各种JavaScript表达式并观察表达式的运行结果。可以通过这个环境很方便Node.js中定义的各种对象所拥有的各种属性及方法。</li>
 <li>package.json文件，定义了这个项目所需要的各种模块，以及项目的配置信息（比如名称、版本、许可证等元数据）。npm install命令根据这个配置文件，自动下载所需的模块，也就是配置项目所需的运行和开发环境。</li>
 <li>events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。</li>
+<li>使用exports和module.exports导出模块，这两种结果并不想同。前面已经提到module.exports是真正的接口，exports只不过是它的辅助工具</li>
 </ol>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p>[1]《Node.js权威指南》<br>[2]<a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-tutorial.html</a><br>[3]<a href="http://javascript.ruanyifeng.com/nodejs/packagejson.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/nodejs/packagejson.html</a></p>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p>[1]《Node.js权威指南》<br>[2]<a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-tutorial.html</a><br>[3]<a href="http://javascript.ruanyifeng.com/nodejs/packagejson.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/nodejs/packagejson.html</a><br>[4]<a href="http://blog.csdn.net/cike110120/article/details/12753253" target="_blank" rel="external">http://blog.csdn.net/cike110120/article/details/12753253</a></p>
 
       
     </div>
@@ -831,7 +893,7 @@ at EventEmitter._tickCallback (node.js:192:40)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#REPL-交互式解释器"><span class="nav-number">1.</span> <span class="nav-text">REPL(交互式解释器)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的表达式运算"><span class="nav-number">1.1.</span> <span class="nav-text">简单的表达式运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用变量"><span class="nav-number">1.2.</span> <span class="nav-text">使用变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下划线-变量"><span class="nav-number">1.3.</span> <span class="nav-text">下划线(_)变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REPL-命令"><span class="nav-number">1.4.</span> <span class="nav-text">REPL 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-debug"><span class="nav-number">1.5.</span> <span class="nav-text">node debug</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Package-json文件"><span class="nav-number">2.</span> <span class="nav-text">Package.json文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scripts字段"><span class="nav-number">2.2.</span> <span class="nav-text">scripts字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dependencies字段，devDependencies字段"><span class="nav-number">2.3.</span> <span class="nav-text">dependencies字段，devDependencies字段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EventEmitter类"><span class="nav-number">3.</span> <span class="nav-text">EventEmitter类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#events-模块"><span class="nav-number">3.1.</span> <span class="nav-text">events 模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EventEmitter类的各个方法"><span class="nav-number">3.2.</span> <span class="nav-text">EventEmitter类的各个方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#error-事件"><span class="nav-number">3.3.</span> <span class="nav-text">error 事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text">reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#REPL-交互式解释器"><span class="nav-number">1.</span> <span class="nav-text">REPL(交互式解释器)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的表达式运算"><span class="nav-number">1.1.</span> <span class="nav-text">简单的表达式运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用变量"><span class="nav-number">1.2.</span> <span class="nav-text">使用变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下划线-变量"><span class="nav-number">1.3.</span> <span class="nav-text">下划线(_)变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REPL-命令"><span class="nav-number">1.4.</span> <span class="nav-text">REPL 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-debug"><span class="nav-number">1.5.</span> <span class="nav-text">node debug</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Package-json文件"><span class="nav-number">2.</span> <span class="nav-text">Package.json文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scripts字段"><span class="nav-number">2.2.</span> <span class="nav-text">scripts字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dependencies字段，devDependencies字段"><span class="nav-number">2.3.</span> <span class="nav-text">dependencies字段，devDependencies字段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EventEmitter类"><span class="nav-number">3.</span> <span class="nav-text">EventEmitter类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#events-模块"><span class="nav-number">3.1.</span> <span class="nav-text">events 模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EventEmitter类的各个方法"><span class="nav-number">3.2.</span> <span class="nav-text">EventEmitter类的各个方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#error-事件"><span class="nav-number">3.3.</span> <span class="nav-text">error 事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#node-js的module-export-和-export方法的区别"><span class="nav-number">4.</span> <span class="nav-text">node.js的module.export 和 export方法的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>
