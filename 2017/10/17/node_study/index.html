@@ -69,18 +69,18 @@
 
 
 
-<meta name="description" content="WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
+<meta name="description" content="nodejs学习笔记">
 <meta name="keywords" content="nodejs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WebSocket &amp;&amp; socket.io">
-<meta property="og:url" content="http://yoursite.com/2017/09/26/index/index.html">
+<meta property="og:title" content="Node.js">
+<meta property="og:url" content="http://yoursite.com/2017/10/17/node_study/index.html">
 <meta property="og:site_name" content="LLemily">
-<meta property="og:description" content="WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
+<meta property="og:description" content="nodejs学习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-16T12:34:50.428Z">
+<meta property="og:updated_time" content="2017-10-17T13:47:40.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WebSocket &amp;&amp; socket.io">
-<meta name="twitter:description" content="WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。">
+<meta name="twitter:title" content="Node.js">
+<meta name="twitter:description" content="nodejs学习笔记">
 
 
 
@@ -110,13 +110,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/26/index/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/17/node_study/"/>
 
 
 
 
 
-  <title>WebSocket && socket.io | LLemily</title>
+  <title>Node.js | LLemily</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/26/index/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/17/node_study/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LLemily">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">WebSocket && socket.io</h1>
+          <h1 class="post-title" itemprop="name headline">Node.js</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-26T13:45:46-04:00">
-                2017-09-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T21:45:46-04:00">
+                2017-10-17
               </time>
             
 
@@ -322,7 +322,7 @@
 
           
           
-             <span id="/2017/09/26/index/" class="leancloud_visitors" data-flag-title="WebSocket && socket.io">
+             <span id="/2017/10/17/node_study/" class="leancloud_visitors" data-flag-title="Node.js">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -358,190 +358,78 @@
       
 
       
-        <p>WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。<br><a id="more"></a></p>
-<h1 id="WebSocket-简介"><a href="#WebSocket-简介" class="headerlink" title="WebSocket 简介"></a><font size="5">WebSocket 简介</font></h1><blockquote>
-<p>在WebSocket API中，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。<br>浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据。<br>当你获取 Web Socket 连接后，你可以通过 send() 方法来向服务器发送数据，并通过 onmessage 事件来接收服务器返回的数据。</p>
+        <p>nodejs学习笔记<br><a id="more"></a></p>
+<h1 id="REPL-交互式解释器"><a href="#REPL-交互式解释器" class="headerlink" title="REPL(交互式解释器)"></a><font size="5">REPL(交互式解释器)</font></h1><blockquote>
+<p>Node.js REPL(Read Eval Print Loop:交互式解释器) 表示一个电脑的环境，类似 Window 系统的终端或 Unix/Linux shell，我们可以在终端中输入命令，并接收系统的响应。Node 自带了交互式解释器，Node 的交互式解释器可以很好的调试 Javascript 代码。<br>我们可以输入以下命令来启动 Node 的终端：</p>
 </blockquote>
-<h1 id="WebSocket-事件"><a href="#WebSocket-事件" class="headerlink" title="WebSocket 事件"></a><font size="5">WebSocket 事件</font></h1><blockquote>
-<p>以下是 WebSocket 对象的相关事件。假定我们使用了以上代码创建了 Socket 对象：</p>
-<ul>
-<li>open               Socket.onopen           连接建立时触发                </li>
-<li>message           Socket.onmessage       客户端接收服务端数据时触发    </li>
-<li>error         Socket.onerror         通信发生错误时触发            </li>
-<li>close         Socket.onclose         连接关闭时触发                </li>
+<pre><code>$ node
+&gt; 
+</code></pre><blockquote>
+<p>这时我们就可以在 &gt; 后输入简单的表达式，并按下回车键来计算结果。</p>
+</blockquote>
+<h2 id="简单的表达式运算"><a href="#简单的表达式运算" class="headerlink" title="简单的表达式运算"></a><font size="4">简单的表达式运算</font></h2><blockquote>
+<p>接下来让我们在 Node.js REPL 的命令行窗口中执行简单的数学运算：</p>
+</blockquote>
+<pre><code>$ node
+&gt; 1 +4
+5
+&gt; 5 / 2
+2.5
+&gt; 3 * 6
+18
+&gt; 4 - 1
+3
+&gt; 1 + ( 2 * 3 ) - 4
+3
+&gt;
+</code></pre><h2 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a><font size="4">使用变量</font></h2><blockquote>
+<p>你可以将数据存储在变量中，并在你需要的时候使用它。变量声明需要使用 var 关键字，如果没有<br>使用 var 关键字变量会直接打印出来。使用 var 关键字的变量可以使用 console.log() 来输出变<br>量。…三个点的符号是系统自动生成的，你回车换行后即可。Node 会自动检测是否为连续的表达式。</p>
+</blockquote>
+<pre><code>$ node
+&gt; x = 10
+10
+&gt; var y = 10
+undefined
+&gt; x + y
+20
+&gt; console.log(&quot;Hello World&quot;)
+Hello World
+undefined
+&gt; console.log(&quot;www.runoob.com&quot;)
+www.runoob.com
+undefined
+</code></pre><h2 id="下划线-变量"><a href="#下划线-变量" class="headerlink" title="下划线(_)变量"></a><font size="4">下划线(_)变量</font></h2><blockquote>
+<p>你可以使用下划线(_)获取表达式的运算结果：</p>
+</blockquote>
+<pre><code>$ node
+&gt; var x = 10
+undefined
+&gt; var y = 20
+undefined
+&gt; x + y
+30
+&gt; var sum = _
+undefined
+&gt; console.log(sum)
+30
+undefined
+&gt;
+</code></pre><h2 id="REPL-命令"><a href="#REPL-命令" class="headerlink" title="REPL 命令"></a><font size="4">REPL 命令</font></h2><ul>
+<li>ctrl + c - 退出当前终端。</li>
+<li>ctrl + c 按下两次 - 退出 Node REPL。</li>
+<li>ctrl + d - 退出 Node REPL.</li>
+<li>向上/向下 键 - 查看输入的历史命令</li>
+<li>tab 键 - 列出当前命令</li>
+<li>.help - 列出使用命令</li>
+<li>.break - 退出多行表达式</li>
+<li>.clear - 退出多行表达式</li>
+<li>.save filename - 保存当前的 Node REPL 会话到指定文件</li>
+<li>.load filename - 载入当前 Node REPL 会话的文件内容。</li>
 </ul>
-</blockquote>
-<h1 id="WebSocket-方法"><a href="#WebSocket-方法" class="headerlink" title="WebSocket 方法"></a><font size="5">WebSocket 方法</font></h1><blockquote>
-<p>以下是 WebSocket 对象的相关方法。假定我们使用了以上代码创建了 Socket 对象：<br>方法    描述</p>
-<ul>
-<li>Socket.send()        使用连接发送数据</li>
-<li>Socket.close()    关闭连接</li>
-</ul>
-</blockquote>
-<h1 id="WebSocket-实例"><a href="#WebSocket-实例" class="headerlink" title="WebSocket 实例"></a><font size="5">WebSocket 实例</font></h1><h2 id="实例1：建立与ws-echo-websocket-org-的通信"><a href="#实例1：建立与ws-echo-websocket-org-的通信" class="headerlink" title="实例1：建立与ws://echo.websocket.org/的通信"></a><font size="4">实例1：建立与ws://echo.websocket.org/的通信</font></h2><pre><code>var conn = new WebSocket(&quot;ws://echo.websocket.org/&quot;); //建立连接
-conn.onopen = function(){             //连接建立时触发
-    console.log(&apos;websocktet connected!&apos;);
-    document.getElementById(&apos;recv&apos;).innerHTML = &quot;connected&quot;;
-}
-conn.onclose = function(){            //连接关闭时触发
-    console.log(&apos;websocktet disconnected&apos;);
-}
-conn.onmessage = function(e){         //接收到数据时触发
-    document.getElementById(&apos;recv&apos;).innerHTML = e.data;
-}
-document.getElementById(&apos;sendBtn&apos;).onclick = function(){   //点击sendBtn按钮时，将填写的数据发送出去
-    conn.send(document.getElementById(&apos;sendTxt&apos;).value);
-}
-</code></pre><h2 id="实例2：建立WebSocket的服务器"><a href="#实例2：建立WebSocket的服务器" class="headerlink" title="实例2：建立WebSocket的服务器"></a><font size="4">实例2：建立WebSocket的服务器</font></h2><pre><code>var ws = require(&apos;nodejs-websocket&apos;);//需要在服务器上安装nodejs-websocket
-var port = 3000;
-
-var server = ws.createServer(function(conn){
-    console.log(&apos;New connection&apos;);
-    conn.on(&apos;text&apos;,function(str){   
-        console.log(&apos;Received &apos;+str);
-        conn.sendText(str+&quot;!!!&quot;);
-    })
-}).listen(port);
-//conn.on(&apos;text&apos;,function(str){}),收到客户端的数据时触发
-</code></pre><h2 id="实例3：利用WebSocket建立聊天室"><a href="#实例3：利用WebSocket建立聊天室" class="headerlink" title="实例3：利用WebSocket建立聊天室"></a><font size="4">实例3：利用WebSocket建立聊天室</font></h2><pre><code>服务器端：
-var ws = require(&apos;nodejs-websocket&apos;);
-var port = 3000;
-var clientCount = 0;
-
-var server = ws.createServer(function(conn){
-    clientCount++;
-    console.log(&apos;New connection&apos;);
-    conn.nickname = clientCount;
-
-    var mes={};
-    mes.type = &apos;enter&apos;;
-    mes.data = &quot;user &quot; +conn.nickname+&apos; comes in&apos;;
-    broadcast(JSON.stringify(mes)); 
-    conn.on(&apos;text&apos;,function(str){
-        console.log(&apos;Received &apos;+str);
-        mes.type = &apos;words&apos;;
-        mes.data = &quot;user &quot; + conn.nickname +&quot; says: &quot;+str+&quot;!!!&quot;;
-        broadcast(JSON.stringify(mes));
-    });
-    conn.on(&apos;close&apos;,function(){
-        mes.type = &apos;leave&apos;;
-        mes.data = &quot;user &quot;+conn.nickname+&apos; left&apos;;
-        broadcast(JSON.stringify(mes)); 
-        //使用json格式来传递数据，用type来表明类型，data来传递数据
-    });
-}).listen(port);
-console.log(&apos;server running at 192.168.216.131:3000&apos;);
-
-function broadcast(str){
-    server.connections.forEach(function(value){
-        value.sendText(str);
-    });
-}//使用server的connections实现一个广播方法
-
-
-客户端：
-var showMessgae = function(type,data){
-        var div =document.createElement(&apos;div&apos;);
-        div.innerHTML = data;
-        if(type==&quot;enter&quot;){
-            div.style.color = &quot;green&quot;;
-        }else if(type == &quot;leave&quot;){
-            div.style.color = &quot;red&quot;;
-        }
-        document.body.appendChild(div);
-    }
-    var conn = new WebSocket(&quot;ws://192.168.216.131:3000/&quot;);
-    conn.onopen = function(){
-        console.log(&apos;websocktet connected!&apos;);
-        document.getElementById(&apos;sendBtn&apos;).onclick = function(){
-            conn.send(document.getElementById(&apos;sendTxt&apos;).value);
-        }
-    }
-    conn.onclose = function(){
-        console.log(&apos;websocktet disconnected&apos;);
-    }
-    conn.onmessage = function(e){
-        var mes = JSON.parse(e.data);
-        showMessgae(mes.type,mes.data);
-    }
-</code></pre><h2 id="实例4：利用socket-io实现通信"><a href="#实例4：利用socket-io实现通信" class="headerlink" title="实例4：利用socket.io实现通信"></a><font size="4">实例4：利用socket.io实现通信</font></h2><pre><code>服务器端：($ npm install socket.io)
-    var app = require(&apos;http&apos;).createServer();
-    var io = require(&apos;socket.io&apos;)(app);
-    var port = 3000;
-
-    app.listen(port);
-
-    io.on(&apos;connection&apos;, function (socket) {     //响应客户端的连接
-      socket.emit(&apos;news&apos;, { hello: &apos;world&apos; });  //发送类型为news的消息
-      socket.on(&apos;my other event&apos;, function (data) {
-        console.log(data);        //响应类型为&apos;my other event&apos;的消息
-      });             //io定义为整个服务器上的连接，socket标记当前连接
-    });
-客户端：(&lt;script src=&quot;../socket.io.js&quot;&gt;&lt;/script&gt;需要安装socket.io)
-    var socket = io(&quot;ws://192.168.216.131:3000&quot;);
-    socket.on(&apos;news&apos;, function (data) {  //响应类型为news的消息
-      console.log(data);
-      socket.emit(&apos;my other event&apos;, { my: &apos;data&apos; }); 
-      //发送类型为&apos;my other event&apos;的消息
-    });
-</code></pre><h2 id="实例5：利用socket-io实现聊天室"><a href="#实例5：利用socket-io实现聊天室" class="headerlink" title="实例5：利用socket.io实现聊天室"></a><font size="4">实例5：利用socket.io实现聊天室</font></h2><pre><code>服务器端：($ npm install socket.io)
-    var app = require(&apos;http&apos;).createServer();
-    var io = require(&apos;socket.io&apos;)(app);
-    var port = 3000;
-    app.listen(port);
-    var clientCount = 0;
-
-
-    io.on(&apos;connection&apos;, function (socket) {
-      clientCount++;
-      console.log(&apos;New connection&apos;);
-      socket.nickname = clientCount;
-      var mes =  &quot;user &quot; + socket.nickname + &apos; comes in&apos;;
-      io.emit(&apos;enter&apos;,mes); //利用io.emit实现消息的广播
-
-      socket.on(&apos;news&apos;,function(data){
-          console.log(&apos;Received &apos;+ data);
-          var mes = &quot;user&quot; + socket.nickname + &apos; says: &apos;+data;
-          io.emit(&apos;news&apos;,mes);
-      });
-
-      socket.on(&apos;disconnect&apos;,function(){
-          console.log(&quot;user&quot; + socket.nickname + &apos; leave!&apos;);
-          var mes = &quot;user&quot; + socket.nickname + &apos; leave!&apos;;
-          io.emit(&apos;leave&apos;,mes);
-      })
-    });
-    //io.on(&apos;connection&apos;,function(socket){});  有客户端接入事件
-    //io.on(&apos;disconnect&apos;,function(socket){});  有客户端离开事件
-客户端：
-    var showMessgae = function(type,data){
-        var div =document.createElement(&apos;div&apos;);
-        div.innerHTML = data;
-        if(type==&quot;enter&quot;){
-            div.style.color = &quot;green&quot;;
-        }else if(type == &quot;leave&quot;){
-            div.style.color = &quot;red&quot;;
-        }
-        document.body.appendChild(div);
-    } //根据收到数据的类型，让数据在客户端以不同的颜色呈现
-
-    var socket = io(&quot;ws://192.168.216.131:3000&quot;);
-    socket.on(&apos;enter&apos;, function (data) {
-        showMessgae(&apos;enter&apos;,data);
-    });
-    socket.on(&apos;news&apos;, function (data) {
-        showMessgae(&apos;news&apos;,data);
-    });
-    socket.on(&apos;leave&apos;, function (data) {
-        showMessgae(&apos;leave&apos;,data);
-    }); //根据接收到的数据类型做出不同的响应
-
-    document.getElementById(&apos;sendBtn&apos;).onclick = function(){
-        var txt = document.getElementById(&apos;sendTxt&apos;).value;
-        socket.emit(&apos;news&apos;,txt);
-    }//发送消息到服务器
-</code></pre><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a><font size="5">小结</font></h1><p>1.利用WebSocket建立连接发送数据时，不方便对数据进行分类，并且发送对象数据要转换成json格式。<br>2.利用socket.io可以直接发送对象格式的数据，并且对数据进行分类发送和响应，使用起来更方便<br>3.并且对io.emit可以直接进行广播发送，不需要像WebSocket一样，调用server.connections</p>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p><a href="https://socket.io/docs/" target="_blank" rel="external">https://socket.io/docs/</a><br><a href="http://www.runoob.com/html/html5-websocket.html" target="_blank" rel="external">http://www.runoob.com/html/html5-websocket.html</a><br><a href="https://github.com/LLEmily/socket.io" target="_blank" rel="external">https://github.com/LLEmily/socket.io</a></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a><font size="5">小结</font></h1><ol>
+<li>第一部分介绍了可交互式运行环境-REPL。开发者可以在该环境中很方便的输入各种JavaScript表达式并观察表达式的运行结果。可以通过这个环境很方便Node.js中定义的各种对象所拥有的各种属性及方法。</li>
+</ol>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p>《Node.js权威指南》<br><a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-tutorial.html</a></p>
 
       
     </div>
@@ -572,15 +460,15 @@ var showMessgae = function(type,data){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/16/star/" rel="next" title="Star && FPGA">
+                <i class="fa fa-chevron-left"></i> Star && FPGA
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/02/linux_c/" rel="prev" title="Linux C语言">
-                Linux C语言 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -737,7 +625,7 @@ var showMessgae = function(type,data){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-简介"><span class="nav-number">1.</span> <span class="nav-text">WebSocket 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-事件"><span class="nav-number">2.</span> <span class="nav-text">WebSocket 事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-方法"><span class="nav-number">3.</span> <span class="nav-text">WebSocket 方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSocket-实例"><span class="nav-number">4.</span> <span class="nav-text">WebSocket 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例1：建立与ws-echo-websocket-org-的通信"><span class="nav-number">4.1.</span> <span class="nav-text">实例1：建立与ws://echo.websocket.org/的通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例2：建立WebSocket的服务器"><span class="nav-number">4.2.</span> <span class="nav-text">实例2：建立WebSocket的服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例3：利用WebSocket建立聊天室"><span class="nav-number">4.3.</span> <span class="nav-text">实例3：利用WebSocket建立聊天室</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例4：利用socket-io实现通信"><span class="nav-number">4.4.</span> <span class="nav-text">实例4：利用socket.io实现通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例5：利用socket-io实现聊天室"><span class="nav-number">4.5.</span> <span class="nav-text">实例5：利用socket.io实现聊天室</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#REPL-交互式解释器"><span class="nav-number">1.</span> <span class="nav-text">REPL(交互式解释器)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的表达式运算"><span class="nav-number">1.1.</span> <span class="nav-text">简单的表达式运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用变量"><span class="nav-number">1.2.</span> <span class="nav-text">使用变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下划线-变量"><span class="nav-number">1.3.</span> <span class="nav-text">下划线(_)变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REPL-命令"><span class="nav-number">1.4.</span> <span class="nav-text">REPL 命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">2.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>
