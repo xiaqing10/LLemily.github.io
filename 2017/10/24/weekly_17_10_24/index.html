@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux_c," />
+  <meta name="keywords" content="weekly," />
 
 
 
@@ -69,18 +69,22 @@
 
 
 
-<meta name="description" content="如何在linux环境下开始写C语言程序">
-<meta name="keywords" content="linux_c">
+<meta name="description" content="2017_10_24周报概述">
+<meta name="keywords" content="weekly">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux C语言基础">
-<meta property="og:url" content="http://yoursite.com/2017/10/02/linux_c/index.html">
+<meta property="og:title" content="2017_10_24周报">
+<meta property="og:url" content="http://yoursite.com/2017/10/24/weekly_17_10_24/index.html">
 <meta property="og:site_name" content="LLemily">
-<meta property="og:description" content="如何在linux环境下开始写C语言程序">
+<meta property="og:description" content="2017_10_24周报概述">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-17T14:26:51.826Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/weekly/17_10_24/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/weekly/17_10_24/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/weekly/17_10_24/3.png">
+<meta property="og:updated_time" content="2017-10-24T09:49:40.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux C语言基础">
-<meta name="twitter:description" content="如何在linux环境下开始写C语言程序">
+<meta name="twitter:title" content="2017_10_24周报">
+<meta name="twitter:description" content="2017_10_24周报概述">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/weekly/17_10_24/1.png">
 
 
 
@@ -110,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/02/linux_c/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/24/weekly_17_10_24/"/>
 
 
 
 
 
-  <title>Linux C语言基础 | LLemily</title>
+  <title>2017_10_24周报 | LLemily</title>
   
 
 
@@ -253,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/02/linux_c/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/24/weekly_17_10_24/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LLemily">
@@ -270,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux C语言基础</h1>
+          <h1 class="post-title" itemprop="name headline">2017_10_24周报</h1>
         
 
         <div class="post-meta">
@@ -282,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T13:45:46-04:00">
-                2017-10-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T17:18:46-04:00">
+                2017-10-24
               </time>
             
 
@@ -305,8 +309,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux-c/" itemprop="url" rel="index">
-                    <span itemprop="name">linux_c</span>
+                  <a href="/categories/weekly/" itemprop="url" rel="index">
+                    <span itemprop="name">weekly</span>
                   </a>
                 </span>
 
@@ -322,7 +326,7 @@
 
           
           
-             <span id="/2017/10/02/linux_c/" class="leancloud_visitors" data-flag-title="Linux C语言基础">
+             <span id="/2017/10/24/weekly_17_10_24/" class="leancloud_visitors" data-flag-title="2017_10_24周报">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -358,261 +362,191 @@
       
 
       
-        <p>如何在linux环境下开始写C语言程序<br><a id="more"></a></p>
-<h1 id="Linux-C语言编程基础"><a href="#Linux-C语言编程基础" class="headerlink" title="Linux C语言编程基础"></a><font size="5">Linux C语言编程基础</font></h1><h2 id="多个源文件共同编译1"><a href="#多个源文件共同编译1" class="headerlink" title="多个源文件共同编译1"></a><font size="4">多个源文件共同编译1</font></h2><pre><code>hello.c：
-#include &lt;stdio.h&gt;
-int main()
-{
-        int a1 = 99;
-        int a2 = 100;
-        printf(&quot;the max num is %d\n&quot;,max(a1,a2));
-        return 0;
-}
-
-max.c：
-int max(int a,int b)
-{
-        if(a&gt;b){
-                return a;
-        }else{
-                return b;
-        }
-}
-</code></pre><blockquote>
-<p>作为两个独立的源文件编译时,使用</p>
+        <p>2017_10_24周报概述<br><a id="more"></a></p>
+<h1 id="上周工作内容"><a href="#上周工作内容" class="headerlink" title="上周工作内容"></a><font size="5">上周工作内容</font></h1><blockquote>
+<p>学习内容</p>
 </blockquote>
-<pre><code>gcc hello.c max.c -o hello.out
-</code></pre><blockquote>
-<p>输出可执行文件hello.out,直接./hello.out即可执行。</p>
-</blockquote>
-<h2 id="多个源文件共同编译2"><a href="#多个源文件共同编译2" class="headerlink" title="多个源文件共同编译2"></a><font size="4">多个源文件共同编译2</font></h2><pre><code>hello.c：
-#include &lt;stdio.h&gt;
-#include &quot;max.c&quot;
-int main()
-{
-        int a1 = 99;
-        int a2 = 100;
-        printf(&quot;the max num is %d\n&quot;,max(a1,a2));
-        return 0;
-}
-
-max.c：
-int max(int a,int b)
-{
-        if(a&gt;b){
-                return a;
-        }else{
-                return b;
-        }
-}
-</code></pre><blockquote>
-<p>在某一个源文件中include另一个源文件时,编译时,使用</p>
-</blockquote>
-<pre><code>gcc hello.c -o hello.out
-</code></pre><blockquote>
-<p>输出可执行文件hello.out,直接./hello.out即可执行</p>
-</blockquote>
-<h2 id="多个源文件共同编译3"><a href="#多个源文件共同编译3" class="headerlink" title="多个源文件共同编译3"></a><font size="4">多个源文件共同编译3</font></h2><pre><code>hello.c：
-#include &lt;stdio.h&gt;
-int main()
-{
-        int a1 = 99;
-        int a2 = 100;
-        printf(&quot;the max num is %d\n&quot;,max(a1,a2));
-        return 0;
-}
-
-max.c：
-int max(int a,int b)
-{
-        if(a&gt;b){
-                return a;
-        }else{
-                return b;
-        }
-}
-</code></pre><blockquote>
-<p>可以先将某些模型编译成obj文件,不产生执行文件</p>
-</blockquote>
-<pre><code>gcc -c max.c -o max.o
-</code></pre><blockquote>
-<p>然后将max.o和hello.c链接起来使用</p>
-</blockquote>
-<pre><code>gcc max.o hello.c -o hello.out
-</code></pre><blockquote>
-<p>这样可以加快整个工程的编译速度,因为某些未修改的部分使用的已经编译好的obj文件<br>我们可以将不会再修改的函数,公共框架,公共类编译生成静态库,将需要修改的业务逻辑部分做成可执行代码。<br>为了让代码可读性更强,我们可以在.h头文件中建立对相关函数的声明,再其他模块中引入相关头文件。</p>
-</blockquote>
-<h2 id="多个源文件共同编译4-Makefile"><a href="#多个源文件共同编译4-Makefile" class="headerlink" title="多个源文件共同编译4(Makefile)"></a><font size="4">多个源文件共同编译4(Makefile)</font></h2><blockquote>
-<p>多源程序共同编译,使用gcc xxx.o xxx.o …命令会增加书写复杂度,可以利用Makefile来解决此问题</p>
-</blockquote>
-<pre><code>#this is make file
-hello.out:max.o min.o hello.c  
-        gcc max.o min.o hello.c -o hello.out
-max.o:max.c
-        gcc -c max.c
-min.o:min.c
-        gcc -c min.c
-</code></pre><blockquote>
-<p>使用#来写注释,hello.out需要文件max.o,min.o,hello.c通过 gcc max.o min.o hello.c -o hello.out命令得到<br>max.o需要通过max.c文件通过gcc -c max.c得到,依此类推。<br>书写完之后,执行make命令,会根据Makefile文件来执行里面的相关命令。<br>之后如果更改了hello.c文件,再此执行make命令时,由于已经编译出max.o和min.o,会省略此步骤。<br>只执行gcc max.o min.o hello.c -o hello.out操作,可以大大加快编译速度,也比直接使用gcc写一长串来的简单。</p>
-</blockquote>
-<h2 id="main函数中的return"><a href="#main函数中的return" class="headerlink" title="main函数中的return"></a><font size="4">main函数中的return</font></h2><blockquote>
-<p>可以使用&amp;&amp;符号来将命令连接起来使用,例如</p>
-</blockquote>
-<pre><code>gcc main.c -o main.out &amp;&amp; ./main.out
-</code></pre><blockquote>
-<p>可以在正确执行完gcc main.c -o main.out操作之后执行&amp;&amp;后面的操作<br>正确执行就是当前面的命令返回值是0的时候,也就是return 0的时候。<br>我们可以使用echo $?来查看前一个命令的返回值。<br>例如：</p>
-</blockquote>
-<pre><code>main.c:
-#include &lt;stdio.h&gt;
-int main(int argv,char* argc[])
-{
-        printf(&quot;hello\n&quot;,);
-        return 100;
-}
-gcc main.c -o main2.out &amp;&amp; ./main2.out 
-stdout:hello
-
-echo $?
-stdout:100
-
-./main2.out &amp;&amp; ls
-stdout:hello 
-</code></pre><blockquote>
-<p>./main2.out &amp;&amp; ls并没有能够正确执行ls命令,因为前一个命令的返回值是100,我们可以利用返回值来进行错误控制</p>
-</blockquote>
-<h2 id="main函数中的参数"><a href="#main函数中的参数" class="headerlink" title="main函数中的参数"></a><font size="4">main函数中的参数</font></h2><pre><code>#include &lt;stdio.h&gt;
-
-int main(int argv,char* argc[])
-{
-        printf(&quot;argv is :%d\n&quot;,argv);
-        int i;
-        for(i=0;i&lt;argv;i++){
-                printf(&quot;argc[%d] is %s\n&quot;,i,argc[i]);
-        }
-        return 100;
-}
-
-[root@localhost les3]# gcc main3.c -o m3.out
-[root@localhost les3]# ./m3.out  1 2 sd 8u
-argv is :5
-argc[0] is ./m3.out
-argc[1] is 1
-argc[2] is 2
-argc[3] is sd
-argc[4] is 8u
-[root@localhost les3]# 
-</code></pre><blockquote>
-<p>可以看到我们可以在执行文件后面加入额外参数,这些参数的个数通过int argv传入,具体参数值会以字符串格式按照数组传入char* argc[]里面</p>
-</blockquote>
-<h2 id="标准输入流、输出流以及错误流"><a href="#标准输入流、输出流以及错误流" class="headerlink" title="标准输入流、输出流以及错误流"></a><font size="4">标准输入流、输出流以及错误流</font></h2><blockquote>
-<p><em>stdio.h</em>会提供一系列指向资源的指针。 linux会把一切设备当做文件来处理,当包含<stdio.h>的应用程序启动时,<br>会自动创建三个文件stdin,stdout,stderr,分别用来表示输入流,输出流,错误流。<br>默认的stdin指向键盘,stdout默认指向显示屏。</stdio.h></p>
-</blockquote>
-<p>实际上printf和scanf是对另外函数的封装</p>
-<pre><code>printf(&quot;hello\n&quot;); 
-fprintf(stdout,&quot;hello\n&quot;); //这二者作用相同
-
-scanf(&quot;%d&quot;,&amp;a);
-fscanf(stdin,&quot;%d&quot;,&amp;a); //这二者作用相同
-
-用stderr做错误控制
-if(***){
-    fprintf(stderr,&quot;error mesaage\n&quot;);
-    return 1;//not zero
-}
-</code></pre><h2 id="标准输入流、输出流以及错误流的重定向"><a href="#标准输入流、输出流以及错误流的重定向" class="headerlink" title="标准输入流、输出流以及错误流的重定向"></a><font size="4">标准输入流、输出流以及错误流的重定向</font></h2><pre><code>main.c:
-#include &lt;stdio.h&gt;
-int main()
-{
-        printf(&quot;input the int value i:\n&quot;); 
-        int i,j;
-        scanf(&quot;%d&quot;,&amp;i);  
-        printf(&quot;input the int value j:\n&quot;); 
-        scanf(&quot;%d&quot;,&amp;j); 
-        if(0!=j){
-                printf(&quot;%d/%d=%d\n&quot;,i,j,i/j); 
-        }else{
-                fprintf(stderr,&quot;j!=0\n&quot;); 
-                return 1;
-        }
-        return 0;
-}
-
-默认执行方式：
-[root@localhost les5]# ./a.out 
-input the int value i:
-8
-input the int value j:
-4
-8/4=2
-
-输出流重定向：
-[root@localhost les5]# ./a.out 1&gt;&gt;a.txt
-8
-4
-[root@localhost les5]# cat a.txt 
-input the int value i:
-input the int value j:
-8/4=2
-</code></pre><blockquote>
-<p>此方式会把默认输出到显示器上的信息输出到重定向的文件a.txt中,1表示标准输出流,2表示标准错误流,&gt;&gt;表示不覆盖输出,&gt;表示覆盖输出。使用&lt;表示重定向标准输入流,&lt;符号前面不需要数字信息。(不在赘述)例如,我们可以使用:<br>ls /etc &gt;&gt;etc.txt<br>把要显示到显示器上的文件目录信息存放在etc.txt文件中。</p>
-</blockquote>
-<h2 id="管道操作"><a href="#管道操作" class="headerlink" title="管道操作"></a><font size="4">管道操作</font></h2><pre><code>[root@localhost imooc_c++]# ls /etc/ | grep abr
-abrt
-</code></pre><blockquote>
-<p>我们可以使用 | 操作符来实现管道操作,所谓管道就是对前面的输出结果用后面的条件加以过滤,<br>上述命令的意思就是对ls显示的/etc/目录下的信息,选择包含abr字符串的目录信息输出。</p>
-</blockquote>
-<pre><code>input.c:
-#include &lt;stdio.h&gt;
-
-int main()
-{
-        int flag=1;
-        int i;
-        int count = 0;
-        int s=0;
-        while(flag){
-                scanf(&quot;%d&quot;,&amp;i);
-                if(0==i) break;
-                count++;
-                s+=i;
-        }
-        printf(&quot;%d,%d\n&quot;,s,count);
-        return 0;
-}
-
-avg.c:
-#include &lt;stdio.h&gt;
-int main()
-{
-        int s,n;
-        scanf(&quot;%d,%d&quot;,&amp;s,&amp;n);
-        float v = s/n;
-        printf(&quot;v= %f\n&quot;,v);
-        return 0;
-}
-cc input.c -o input.out 
-cc avg.c -o avg.out
-[root@localhost les6]# ./input.out | ./avg.out   //可以将具有独立功能的程序利用管道结合起来使用
-1000
-4000
-5000
-0
-v= 3333.000000
-</code></pre><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a><font size="5">小结</font></h1><ol>
-<li><ul>
-<li>多个源文件编译时候,可以使用include引入.c文件,相当于直接引入代码;</li>
-<li>可以利用gcc一起编译执行,每次都需要重新编译多个文件,增加额外开销;</li>
-<li>可以先将部分文件编译成obj文件,编译可执行文件时引入其他相关obj文件即可,命令比较复杂繁琐;</li>
-<li>编写Makefile文件,执行make命令。并且make命令会忽略掉已经执行完成的部分。编译速度快并且使用简单。</li>
-<li>可以使用&amp;&amp;符号来一次执行多个命令,main函数的返回值0用来表示程序被正确执行。</li>
-<li>main函数的参数(int argv,char* argc[])用来存储执行命令时的参数个数和各个参数的字符串值。</li>
-<li><stdio.h>定义了三个流,标准输入流,输出流和错误流。</stdio.h></li>
-<li>我们可以对流进行重定向改变输入输出的方式和途径。</li>
-<li>我们可以通过管道操作实现各个独立模块的连接过滤。</li>
+<ul>
+<li>学习《nodejs权威指南》</li>
+<li>学习使用nodejs+express+mongodb实现前后端交流</li>
 </ul>
+<h1 id="《nodejs权威指南》学习收获"><a href="#《nodejs权威指南》学习收获" class="headerlink" title="《nodejs权威指南》学习收获"></a><font size="5">《nodejs权威指南》学习收获</font></h1><ol>
+<li><p>nodejs通过非阻塞的IO机制，通过事件的回调函数来处理IO结果。当应用程序内部需要处理大量的并发的输入输出数据，程序内部不需要进行非常复杂的处理的时候，可以考虑使用nodejs</p>
 </li>
+<li><p>在安装node之后，可以在nodejs框架提供的交互式运行环境REPL中测试观察相关表达式的结果。</p>
+</li>
+<li><p>Nodejs的全局作用域（global）和全局函数（例如setTimeout），全局变量(例如__dirname)</p>
+</li>
+<li><p>事件处理机制，nodejs中的event模块定义了一个EventEmitter类，在其定义的子类实例对象上，可以绑定事件处理函数，通过对事件的监听的响应来触发回调函数。</p>
+</li>
+<li><p>模块的使用，对于核心模块，例如http,net,dgram直接require使用；对于自定义的文件模块，需要用module.exports方式导出，在其他文件中require(路径名)使用，对于npm安装的第三方扩展模块，使用方式和核心模块相同。可以通过配置package.json的方法来进行安装</p>
+</li>
+<li><p>学习了Buffer类和文件系统，主要包括Buffer对象的创建以及和其他Javascript其他对象的转换。Nodejs中对文件及文件夹进行的读写，删除，修改等操作，以及文件流和管道的概念。</p>
+</li>
+<li></li>
 </ol>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p>[1]<a href="http://www.imooc.com/learn/248" target="_blank" rel="external">http://www.imooc.com/learn/248</a></p>
+<ul>
+<li>使用net模块创建TCP通信</li>
+<li>使用dgram模块创建UDP通信</li>
+<li>使用http模块创建HTTP通信</li>
+</ul>
+<ol>
+<li>使用express框架处理客户端提交的请求，通过客户端的请求数据来对mongodb数据库进行相关的操作</li>
+</ol>
+<h1 id="代码及结果"><a href="#代码及结果" class="headerlink" title="代码及结果"></a><font size="5">代码及结果</font></h1><h2 id="向数据库写入数据"><a href="#向数据库写入数据" class="headerlink" title="向数据库写入数据"></a><font size="4">向数据库写入数据</font></h2><p>服务器端：</p>
+<pre><code>var express = require(&apos;express&apos;);  //express框架引入和应用程序创建部分
+var app = express();
+var fs = require(&apos;fs&apos;);
+var querystring = require(&apos;querystring&apos;);
+
+
+var mongo = require(&apos;mongodb&apos;);   //数据库连接部分
+var host = &apos;localhost&apos;;
+var port = 27017;
+var server = new mongo.Server(host,port,{auto_reconnect:true});
+var db = new mongo.Db(&apos;node-mongo-examples&apos;,server,{safe:true});
+
+
+app.get(&apos;/index.html&apos;,function(req,res){   //收到http://192.168.216.131:8888/index.html后发送html页面
+    // res.writeHead(200,{&apos;Content-Type&apos;:&apos;text/html&apos;});
+    // res.write(&apos;&lt;head&gt;&lt;meta charset = &quot;utf-8&quot;/&gt;&lt;title&gt;使用post方法向服务器端提交数据&lt;/title&gt;&lt;/head&gt;&apos;)
+    // var file = fs.createReadStream(&apos;index.html&apos;);
+    // file.pipe(res);
+    res.sendFile(__dirname+&apos;/index.html&apos;);
+})
+
+
+app.post(&apos;/index.html&apos;,function(req,res){    //收到post请求的数据后写入数据库
+    req.on(&apos;data&apos;,function(data){
+        console.log(data);
+        var obj = querystring.parse(data.toString());
+        db.open(function(err,db){
+            if(err) throw err;
+            else{
+                console.log(&apos;成功连接到数据库&apos;);
+                db.collection(&apos;names&apos;,function(err,collection){
+                    if(err) throw err;
+                    else{
+                        collection.insert(obj,function(err,obj){
+                            if(err) throw err;
+                            else{
+                                console.log(obj);
+                                db.close();
+                                res.send(&apos;写入数据库成功\n&apos;)
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    })
+})
+
+app.listen(8888);   //监听端口号为8888的接口
+</code></pre><blockquote>
+<p>客户端</p>
+</blockquote>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;使用post方法向服务器端提交数据&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id=&quot;form1&quot; action=&quot;index.html&quot; method=&quot;post&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;firstname&quot; value=&quot;杨&quot;&gt;&lt;br&gt;
+        &lt;input type=&quot;text&quot; name=&quot;lastname&quot; value=&quot;彩清&quot;&gt;&lt;br&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><blockquote>
+<p>运行结果<br>    <buffer 25="" 26="" 35="" 36="" 38="" 39="" 41="" 42="" 44="" 45="" 61="" 65="" 66="" 69="" 72="" 73="" 74="" 6e="" 6d="" 3d="" 6c=""><br>    成功连接到数据库<br>    { result: { ok: 1, n: 1 },<br>      ops: [ { firstname: ‘杨’, lastname: ‘彩清’, _id: 59ef084f14a1ff1ff0506e75 } ],<br>      insertedCount: 1,<br>      insertedIds: [ 59ef084f14a1ff1ff0506e75 ] }</buffer></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/weekly/17_10_24/1.png"><br><img src="https://raw.githubusercontent.com/LLEmily/Images/master/weekly/17_10_24/2.png"></p>
+<h2 id="向数据库查询数据"><a href="#向数据库查询数据" class="headerlink" title="向数据库查询数据"></a><font size="4">向数据库查询数据</font></h2><p>服务器端：</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+var fs = require(&apos;fs&apos;);
+var querystring = require(&apos;querystring&apos;);
+
+var MongoClient = require(&apos;mongodb&apos;).MongoClient;
+var DB_CONN_STR = &apos;mongodb://localhost:27017/node-mongo-examples&apos;;   
+
+app.get(&apos;/index.html&apos;,function(req,res){
+    res.sendFile(__dirname+&apos;/index.html&apos;);
+})
+
+app.put(&apos;/index.html&apos;,function(req,res){
+    req.on(&apos;data&apos;,function(data){
+        var obj = JSON.parse(data.toString());
+        console.log(obj);
+        MongoClient.connect(DB_CONN_STR, function(err, db) {
+             console.log(&quot;连接成功！&quot;);
+            db.collection(&apos;names&apos;,function(err,collection){
+                if(err) throw err;
+                else{
+                    // collection.insert(obj,function(err,obj){
+                    //     if(err) throw err;
+                    //     else{
+                    //         console.log(obj);
+                    //         db.close();
+                    //         res.send(&apos;写入数据库成功\n&apos;)
+                    //     }
+                    // })
+                    collection.find({lastname:obj.lastname},{fields:{lastname:1,_id:0}}).toArray(function(err,docs){
+                        if(err) throw err;
+                        else{
+                            //res.send(&apos;从数据库取数据\n&apos;);
+                            res.send(docs);
+                        }
+                    })
+                }
+            })          
+        });
+    })
+})
+
+app.listen(8888);
+</code></pre><p>客户端：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;使用put方法向服务器端提交数据&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        function submitData() {
+            var obj = {
+                firstname:document.getElementById(&apos;firstname&apos;).value,
+                lastname:document.getElementById(&apos;lastname&apos;).value
+            };
+            var xhr = new XMLHttpRequest();
+            xhr.open(&apos;put&apos;,&apos;index.html&apos;,&apos;true&apos;);
+
+            xhr.onload = function(e){
+                if(this.status == 200){
+                    document.getElementById(&apos;result&apos;).innerHTML = this.response;
+                }
+            }
+            xhr.send(JSON.stringify(obj));
+            console.log(JSON.stringify(obj));
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id=&quot;form1&quot; &gt;
+        &lt;input type=&quot;text&quot; name=&quot;firstname&quot; id=&quot;firstname&quot; value=&quot;杨&quot;&gt;&lt;br&gt;
+        &lt;input type=&quot;text&quot; name=&quot;lastname&quot; id=&quot;lastname&quot; value=&quot;彩清&quot;&gt;&lt;br&gt;
+        &lt;input type=&quot;button&quot; value=&quot;提交&quot; onclick=&quot;submitData()&quot;&gt;
+    &lt;/form&gt;
+    &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>运行结果：</p>
+<pre><code>[root@localhost node_js_DGuide]# node express5.js 
+{ firstname: &apos;杨&apos;, lastname: &apos;彩清&apos; }
+连接成功！
+</code></pre><p><img src="https://raw.githubusercontent.com/LLEmily/Images/master/weekly/17_10_24/3.png"></p>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p>[1]《Node.js权威指南》<br>[2]<a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-tutorial.html</a><br>[3]<a href="http://blog.csdn.net/cike110120/article/details/12753253" target="_blank" rel="external">http://blog.csdn.net/cike110120/article/details/12753253</a><br>[4]<a href="http://www.cnblogs.com/moyiqing/p/node_tcp.html" target="_blank" rel="external">http://www.cnblogs.com/moyiqing/p/node_tcp.html</a><br>[5]<a href="http://jingyan.baidu.com/article/948f5924173a64d80ff5f9f3.html" target="_blank" rel="external">http://jingyan.baidu.com/article/948f5924173a64d80ff5f9f3.html</a></p>
 
       
     </div>
@@ -630,7 +564,7 @@ v= 3333.000000
       
         <div class="post-tags">
           
-            <a href="/tags/linux-c/" rel="tag"># linux_c</a>
+            <a href="/tags/weekly/" rel="tag"># weekly</a>
           
         </div>
       
@@ -643,8 +577,8 @@ v= 3333.000000
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/26/index/" rel="next" title="WebSocket && socket.io">
-                <i class="fa fa-chevron-left"></i> WebSocket && socket.io
+              <a href="/2017/10/18/node_study2/" rel="next" title="《nodejs权威指南》学习笔记2">
+                <i class="fa fa-chevron-left"></i> 《nodejs权威指南》学习笔记2
               </a>
             
           </div>
@@ -652,10 +586,6 @@ v= 3333.000000
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/16/Question&Solution/" rel="prev" title="Question && Solution">
-                Question && Solution <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -812,7 +742,7 @@ v= 3333.000000
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-C语言编程基础"><span class="nav-number">1.</span> <span class="nav-text">Linux C语言编程基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译1"><span class="nav-number">1.1.</span> <span class="nav-text">多个源文件共同编译1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译2"><span class="nav-number">1.2.</span> <span class="nav-text">多个源文件共同编译2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译3"><span class="nav-number">1.3.</span> <span class="nav-text">多个源文件共同编译3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件共同编译4-Makefile"><span class="nav-number">1.4.</span> <span class="nav-text">多个源文件共同编译4(Makefile)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main函数中的return"><span class="nav-number">1.5.</span> <span class="nav-text">main函数中的return</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main函数中的参数"><span class="nav-number">1.6.</span> <span class="nav-text">main函数中的参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准输入流、输出流以及错误流"><span class="nav-number">1.7.</span> <span class="nav-text">标准输入流、输出流以及错误流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准输入流、输出流以及错误流的重定向"><span class="nav-number">1.8.</span> <span class="nav-text">标准输入流、输出流以及错误流的重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管道操作"><span class="nav-number">1.9.</span> <span class="nav-text">管道操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">2.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#上周工作内容"><span class="nav-number">1.</span> <span class="nav-text">上周工作内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#《nodejs权威指南》学习收获"><span class="nav-number">2.</span> <span class="nav-text">《nodejs权威指南》学习收获</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码及结果"><span class="nav-number">3.</span> <span class="nav-text">代码及结果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#向数据库写入数据"><span class="nav-number">3.1.</span> <span class="nav-text">向数据库写入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向数据库查询数据"><span class="nav-number">3.2.</span> <span class="nav-text">向数据库查询数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>
