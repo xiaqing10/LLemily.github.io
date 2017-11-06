@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="LLemily">
 <meta property="og:description" content="《angular.js权威指南》学习笔记1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-06T13:39:00.577Z">
+<meta property="og:updated_time" content="2017-11-06T13:43:41.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《angular.js权威指南》学习笔记1">
 <meta name="twitter:description" content="《angular.js权威指南》学习笔记1">
@@ -367,11 +367,215 @@
 <li>ng-app=” “  定义angularJS的使用范围；</li>
 <li>ng-init=”变量=值;变量=’值’”  初始化变量的值，有多个变量时，中间用分号隔开；</li>
 <li>ng-model=”变量”  定义变量名；</li>
-<li>ng-bind=”变量”  绑定变量名，获取该变量的数据。这里的变量就是第3条的变量名。但是一般都用双重花括号来获取变量的值，比如：。</li>
-</ol>
-<blockquote>
+<li>ng-bind=”变量”  绑定变量名，获取该变量的数据。这里的变量就是第3条的变量名。但是一般都用双重花括号来获取变量的值，比如：&#123; &#123;变量&#125;&#125;。<blockquote>
 <p>其中ng-init和ng-bind都是不建议使用的，ng-init初始化会使得结构臃肿，并且把数据和元素混在一起，不符合表现和数据分离的特点。<br>ng-bind不能绑定表达式，扩展性不好，使用&#123; &#123; &#125;&#125;符号来提取ng-model更使用。</p>
 </blockquote>
+</li>
+</ol>
+<h2 id="开始使用angular"><a href="#开始使用angular" class="headerlink" title="开始使用angular"></a><font size="4">开始使用angular</font></h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div ng-app=&quot;&quot;&gt;
+     &lt;p&gt;名字 : &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;/p&gt;
+     &lt;h1&gt;Hello {{name}}&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><blockquote>
+<p>需要通过script标签引入angular框架，通过ng-app定义应用的范围，在页面比较复杂的情况下，可以使用控制器来分离</p>
+</blockquote>
+<pre><code>&lt;div ng-app=&quot;myApp&quot; ng-controller=&quot;myCtrl&quot;&gt;
+
+名: &lt;input type=&quot;text&quot; ng-model=&quot;firstName&quot;&gt;&lt;br&gt;
+姓: &lt;input type=&quot;text&quot; ng-model=&quot;lastName&quot;&gt;&lt;br&gt;
+&lt;br&gt;
+姓名: {{firstName + " " + lastName}}
+
+&lt;/div&gt;
+
+&lt;script&gt;
+var app = angular.module(&apos;myApp&apos;, []);
+app.controller(&apos;myCtrl&apos;, function($scope) {  
+    /*默认必须有一个$scope对象，控制器内的各个视图模型以及函数全部被定义在这个$scope作用域上，如果需要引入其他服务，增加其他对象即可，例如function($scope,$http) */
+    $scope.firstName= &quot;John&quot;;
+    $scope.lastName= &quot;Doe&quot;;
+});
+&lt;/script&gt;
+</code></pre><h2 id="123-123-125-125-表达式和其他常见指令"><a href="#123-123-125-125-表达式和其他常见指令" class="headerlink" title="&#123; &#123; &#125;&#125;表达式和其他常见指令"></a><font size="4">&#123; &#123; &#125;&#125;表达式和其他常见指令</font></h2><p>&gt;<br>AngularJS 表达式写在双大括号内：&#123; &#123; expression &#125;&#125;。<br>AngularJS 表达式把数据绑定到 HTML。<br>AngularJS 将在表达式书写的位置”输出”数据。<br>AngularJS 表达式 很像 JavaScript 表达式：它们可以包含文字、运算符和变量。<br>实例 &#123; &#123; 5 + 5 &#125;&#125; 或 &#123; &#123; firstName + “ “ + lastName &#125;&#125;</p>
+<p>ng-repeat 指令用来重复一个HTML元素</p>
+<pre><code>&lt;div ng-app=&quot;&quot; ng-init=&quot;names=[&apos;Jani&apos;,&apos;Hege&apos;,&apos;Kai&apos;]&quot;&gt;
+  &lt;p&gt;使用 ng-repeat 来循环数组&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li ng-repeat=&quot;x in names&quot;&gt;
+         {{ x }}
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre><p>ng-repeat指令用在一个对象数组上</p>
+<pre><code>&lt;div ng-app=&quot;&quot; ng-init=&quot;names=[
+{name:&apos;Jani&apos;,country:&apos;Norway&apos;},
+{name:&apos;Hege&apos;,country:&apos;Sweden&apos;},
+{name:&apos;Kai&apos;,country:&apos;Denmark&apos;}]&quot;&gt;
+
+&lt;p&gt;循环对象：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li ng-repeat=&quot;x    in names&quot;&gt;
+    {{ x.name + ', ' + x.country }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+</code></pre><p>ng-show或者ng-hide用来定义显示或者隐藏某个元素</p>
+<blockquote>
+<p>通过给ng-show或者ng-hide赋布尔类型的值来定义显示隐藏<br>html布尔属性只要出现即默认true,例如disabled,readonly,checked,selected等等，前面加上ng-之后，变量angular类型的属性，可以通过布尔值来定义该属性的有效或者无效</p>
+</blockquote>
+<pre><code>&lt;input type=&quot;text&quot; ng-model=&apos;an&apos;&gt;&lt;br/&gt;
+&lt;input type=&quot;text&quot; ng-disabled=&apos;!an&apos;&gt;&lt;br/&gt;
+&lt;hr&gt;  //当在第一个输入框输入数据时，第二个框才能被使用
+
+&lt;input type=&quot;text&quot; ng-model=&quot;pro&quot;&gt;&lt;br/&gt;
+&lt;input type=&quot;text&quot; value=&quot;some text&quot; ng-readonly=&quot;pro&quot;&gt;&lt;br/&gt;  
+&lt;hr&gt;  //当在第一个框输入数据时，第二个框变成只读模式
+</code></pre><h1 id="scope作用域"><a href="#scope作用域" class="headerlink" title="$scope作用域"></a><font size="5">$scope作用域</font></h1><blockquote>
+<p>Scope(作用域) 是应用在 HTML (视图) 和 JavaScript (控制器)之间的纽带。<br>Scope 是一个对象，有可用的方法和属性。<br>Scope 可应用在视图和控制器上。<br>当你在 AngularJS 创建控制器时，你可以将 $scope 对象当作一个参数传递:</p>
+</blockquote>
+<pre><code>&lt;div ng-app=&quot;myApp&quot; ng-controller=&quot;myCtrl&quot;&gt;
+&lt;h1&gt;{{carname}}&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var app = angular.module(&apos;myApp&apos;, []);
+app.controller(&apos;myCtrl&apos;, function($scope) {
+    $scope.carname = &quot;Volvo&quot;;
+});
+&lt;/script&gt;
+</code></pre><blockquote>
+<p>在大型项目中,HTML DOM 中有多个作用域,所有的应用都有一个 $rootScope，它可以作用在 ng-app 指令包含的所有 HTML 元素中。<br>$rootScope 可作用于整个应用中。是各个 controller 中 scope 的桥梁。用 rootscope 定义的值，可以在各个 controller 中使用。$rootscope设置的变量在所有controller里面都是可以直接用&#123; &#123;$root.变量名&#125;&#125;来显示的，当然也可以赋值给$scope.</p>
+</blockquote>
+<h1 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a><font size="5">过滤器</font></h1><blockquote>
+<p>过滤器可以使用一个管道字符（|）添加到表达式和指令中。</p>
+</blockquote>
+<pre><code>//将数组转换成大写
+&lt;div ng-app=&quot;myApp&quot; ng-controller=&quot;personCtrl&quot;&gt;
+
+&lt;p&gt;姓名为 {{ lastName | uppercase <p></p>}}
+
+&lt;/div&gt;
+</code></pre><blockquote>
+<p>除了内置的过滤器之外，可以自定义过滤器</p>
+</blockquote>
+<pre><code>//将msg逆序输出
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;script src=&quot;http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;body&gt;
+
+&lt;div ng-app=&quot;myApp&quot; ng-controller=&quot;myCtrl&quot;&gt;
+
+
+姓名: {{ msg | reverse }}
+
+&lt;/div&gt;
+
+&lt;script&gt;
+var app = angular.module(&apos;myApp&apos;, []);
+app.controller(&apos;myCtrl&apos;, function($scope) {
+    $scope.msg = &quot;Runoob&quot;;
+});
+app.filter(&apos;reverse&apos;, function() { //可以注入依赖
+    return function(text) {
+        return text.split(&quot;&quot;).reverse().join(&quot;&quot;);
+    }
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h1 id="AngularJS-服务"><a href="#AngularJS-服务" class="headerlink" title="AngularJS 服务"></a><font size="5">AngularJS 服务</font></h1><blockquote>
+<p>AngularJS 中你可以创建自己的服务，或使用内建服务。</p>
+</blockquote>
+<pre><code>//例如使用$location服务返回当前页面的地址
+var app = angular.module(&apos;myApp&apos;, []);
+app.controller(&apos;customersCtrl&apos;, function($scope, $location) {
+    $scope.myUrl = $location.absUrl();
+});
+</code></pre><blockquote>
+<p>$http 是 AngularJS 应用中最常用的服务。 服务向服务器发送请求，应用响应服务器传送过来的数据。</p>
+</blockquote>
+<pre><code>var app = angular.module(&apos;myApp&apos;, []);
+app.controller(&apos;myCtrl&apos;, function($scope, $http) {
+    $http.get(&quot;welcome.htm&quot;).then(function (response) {
+        $scope.myWelcome = response.data;
+    });
+});
+</code></pre><blockquote>
+<p>也可以自定义服务</p>
+</blockquote>
+<pre><code>app.service(&apos;hexafy&apos;, function() {
+    this.myFunc = function (x) {
+        return x.toString(16);
+    }
+});  //自定义一个用于转换成16进制数的服务
+app.controller(&apos;myCtrl&apos;, function($scope, hexafy) {
+    $scope.hex = hexafy.myFunc(255);
+});
+</code></pre><h1 id="http服务"><a href="#http服务" class="headerlink" title="http服务"></a><font size="5">http服务</font></h1><blockquote>
+<p>$http 是 AngularJS 中的一个核心服务，用于读取远程服务器的数据。封装了xhr请求<br>在学习这一块的过程中，有一个认识就是，如果我们用表单提交的get和post请求，用表单的action属性去响应事件，适用于页面需要跳转的情况，如果仍停留在当前页面，则返回值会覆盖原页面。如果想通过请求对页面做局部更新，则需要用到ajax方法，因为定义了XMLHttpRequest 对象相当于给出了一个用于接收返回数据的对象，可以通过对返回值的处理，来更新页面。而如果通过表单来处理的话，则没有用于处理响应数据的接口，会导致整个页面被返回数据重新覆盖。所以是否动态刷新页面关键在于前端对响应所做的处理。与后端的处理没有关系。而在angularjs的http请求中，已经封装了ajax方法。<br>在后续的使用中，除非要进行页面跳转的情况下，否则少直接用表单提交来进行通信。</p>
+</blockquote>
+<p>存在一个疑问：使用form表单向本页面做出请求(内置有PHP代码)的时候，是否也进行了页面的重绘？还是只对echo部分做了局部更新</p>
+<pre><code>使用格式：
+// 简单的 GET 请求，可以改为 POST
+$http({
+    method: &apos;GET&apos;,
+    url: &apos;/someUrl&apos;
+}).then(function successCallback(response) {
+        // 请求成功执行代码
+    }, function errorCallback(response) {
+        // 请求失败执行代码
+});
+
+
+var app = angular.module(&apos;myApp&apos;, []);
+
+app.controller(&apos;siteCtrl&apos;, function($scope, $http) {
+    $http({
+        method: &apos;GET&apos;,
+        url: &apos;https://www.runoob.com/try/angularjs/data/sites.php&apos;
+    }).then(function successCallback(response) {
+            $scope.names = response.data.sites;
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+    });
+
+});
+//使用promise类型？来对响应做出处理
+</code></pre><blockquote>
+<p>可以在get请求中加入params属性，请求会在url后以键值对的形式发送</p>
+</blockquote>
+<pre><code>$http({
+    method: &apos;GET&apos;,
+    url: &apos;https://www.baidu.com&apos;,
+    params:{action:&apos;data&apos;}
+})
+在f12调试栏看到的请求就是&apos;https://www.baidu.com?action=data  
+在服务器端需要通过req.query.action来获取
+</code></pre><blockquote>
+<p>可以在get请求的url路径中进行追加</p>
+</blockquote>
+<pre><code>$http({
+    method: &apos;GET&apos;,
+    url: &apos;https://www.baidu.com/lol&apos;
+})
+在f12调试栏看到的请求就是&apos;https://www.baidu.com/lol 
+在服务器端可以用app.get(&apos;/:bala&apos;,....)来对此路径做出响应(假设根目录对www.baidu.com)
+我们可以通过req.params.bala获取到值lol
+</code></pre><h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p>[1]《Angular.js权威教程》<br>[2]<a href="http://www.runoob.com/angularjs/angularjs-tutorial.html" target="_blank" rel="external">http://www.runoob.com/angularjs/angularjs-tutorial.html</a></p>
 
       
     </div>
@@ -567,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些认识"><span class="nav-number">1.</span> <span class="nav-text">一些认识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单指令"><span class="nav-number">1.1.</span> <span class="nav-text">简单指令</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些认识"><span class="nav-number">1.</span> <span class="nav-text">一些认识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单指令"><span class="nav-number">1.1.</span> <span class="nav-text">简单指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始使用angular"><span class="nav-number">1.2.</span> <span class="nav-text">开始使用angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#123-123-125-125-表达式和其他常见指令"><span class="nav-number">1.3.</span> <span class="nav-text">{ { }}表达式和其他常见指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scope作用域"><span class="nav-number">2.</span> <span class="nav-text">$scope作用域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过滤器"><span class="nav-number">3.</span> <span class="nav-text">过滤器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AngularJS-服务"><span class="nav-number">4.</span> <span class="nav-text">AngularJS 服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http服务"><span class="nav-number">5.</span> <span class="nav-text">http服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>
