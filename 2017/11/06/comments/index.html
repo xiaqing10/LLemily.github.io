@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="nodejs," />
+  <meta name="keywords" content="angularjs," />
 
 
 
@@ -69,18 +69,25 @@
 
 
 
-<meta name="description" content="《nodejs权威指南》学习笔记2">
-<meta name="keywords" content="nodejs">
+<meta name="description" content="angular+express+mongodb实现评论功能">
+<meta name="keywords" content="angularjs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《nodejs权威指南》学习笔记2">
-<meta property="og:url" content="http://yoursite.com/2017/10/18/node_study2/index.html">
+<meta property="og:title" content="angular之http模块使用">
+<meta property="og:url" content="http://yoursite.com/2017/11/06/comments/index.html">
 <meta property="og:site_name" content="LLemily">
-<meta property="og:description" content="《nodejs权威指南》学习笔记2">
+<meta property="og:description" content="angular+express+mongodb实现评论功能">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-18T15:20:35.265Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/comments/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/comments/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/comments/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/comments/4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/comments/5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/comments/6.png">
+<meta property="og:updated_time" content="2017-11-07T03:34:00.209Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《nodejs权威指南》学习笔记2">
-<meta name="twitter:description" content="《nodejs权威指南》学习笔记2">
+<meta name="twitter:title" content="angular之http模块使用">
+<meta name="twitter:description" content="angular+express+mongodb实现评论功能">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/LLEmily/Images/master/comments/1.png">
 
 
 
@@ -110,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/18/node_study2/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/06/comments/"/>
 
 
 
 
 
-  <title>《nodejs权威指南》学习笔记2 | LLemily</title>
+  <title>angular之http模块使用 | LLemily</title>
   
 
 
@@ -253,7 +260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/node_study2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/06/comments/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LLemily">
@@ -270,7 +277,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《nodejs权威指南》学习笔记2</h1>
+          <h1 class="post-title" itemprop="name headline">angular之http模块使用</h1>
         
 
         <div class="post-meta">
@@ -282,8 +289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T21:45:46-04:00">
-                2017-10-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T19:45:46-05:00">
+                2017-11-06
               </time>
             
 
@@ -305,8 +312,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
                   </a>
                 </span>
 
@@ -322,7 +329,7 @@
 
           
           
-             <span id="/2017/10/18/node_study2/" class="leancloud_visitors" data-flag-title="《nodejs权威指南》学习笔记2">
+             <span id="/2017/11/06/comments/" class="leancloud_visitors" data-flag-title="angular之http模块使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -358,83 +365,194 @@
       
 
       
-        <p>《nodejs权威指南》学习笔记2<br><a id="more"></a></p>
-<h1 id="Buffer类"><a href="#Buffer类" class="headerlink" title="Buffer类"></a><font size="5">Buffer类</font></h1><blockquote>
-<p>JavaScript 语言自身只有字符串数据类型，没有二进制数据类型。但在处理像TCP流或文件流时，必须使用到二进制数据。因此在 Node.js中，定义了一个 Buffer 类，该类用来创建一个专门存放二进制数据的缓存区。Buffer类是一个可以在任何模块中被利用的<br>全局类，不需要为该类的使用加载任何模块。</p>
+        <p>angular+express+mongodb实现评论功能<br><a id="more"></a></p>
+<h1 id="如何传递页面"><a href="#如何传递页面" class="headerlink" title="如何传递页面"></a><font size="5">如何传递页面</font></h1><blockquote>
+<p>刚开始测试的时候，我打算就以本地文件的形式打开html页面，但是在向服务器端请求评论数据的时候，存在跨域问题，虽然可以用</p>
 </blockquote>
-<h2 id="创建-Buffer类"><a href="#创建-Buffer类" class="headerlink" title="创建 Buffer类"></a><font size="4">创建 Buffer类</font></h2><blockquote>
-<p>方法 1：创建长度为 10 字节的 Buffer 实例：</p>
-</blockquote>
-<pre><code>var buf = new Buffer(10);
+<pre><code>res.header(&apos;Access-Control-Allow-Origin&apos;, &apos;*&apos;);
 </code></pre><blockquote>
-<p>方法 2：通过给定的数组创建 Buffer 实例：</p>
+<p>来解决get请求下的跨域问题，但是表单提交的post请求还是无法妥善处理，并且在实际使用的过程，用户访问的是一个地址，而不是像我在本地测试一样，直接可以以文档形式打开页面。所以，最后决定，把页面也托管在服务器上，这样也更符合实际场景。</p>
 </blockquote>
-<pre><code>var buf = new Buffer([10, 20, 30, 40, 50]);
+<pre><code>app.get(&apos;/&apos;,function(req,res){
+    res.writeHead(200,{&apos;Content-Type&apos;:&apos;text/html&apos;});
+    res.write(&apos;&lt;head&gt;&lt;meta charset = &quot;utf-8&quot;/&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&apos;)
+    var file = fs.createReadStream(&apos;index.html&apos;);
+    file.pipe(res);
+})
 </code></pre><blockquote>
-<p>方法 3：通过一个字符串来创建 Buffer 实例：</p>
+<p>当用户访问192.168.216.131:8888地址时，以文件流的形式将html页面返回到输出流中。</p>
 </blockquote>
-<pre><code>var buf = new Buffer(&quot;www.runoob.com&quot;, &quot;utf-8&quot;);
-</code></pre><blockquote>
-<p>utf-8 是默认的编码方式，此外它同样支持以下编码：”ascii”, “utf8”, “utf16le”, “ucs2”, “base64” 和 “hex”。</p>
-<p>可是使用Buffer对象的fill方法来初始化缓存区的内容，例如：</p>
+<h1 id="如何在初次加载页面的同时一并读出数据库数据"><a href="#如何在初次加载页面的同时一并读出数据库数据" class="headerlink" title="如何在初次加载页面的同时一并读出数据库数据"></a><font size="5">如何在初次加载页面的同时一并读出数据库数据</font></h1><blockquote>
+<p>在初次访问页面的过程中，已经存在mongodb数据库中的数据也需要一并被取出返回到页面上，那么如何在返回页面的时候，让页面上已经有数据库中的数据，刚开始我想的是在res对象上继续返回数据库数据即可，这样存在两个问题，第一就是在用pipe方法设置了res之后，不能继续send数据，报错是can’t send header after…;第二个问题就是，页面上并没有对应的接口来响应此时数据库返回的数据，就算数据库能够返回，数据最后也不知道返回到何处。</p>
+<p>另外一个思路是，用类似模板引擎的思想，在刚开始给出页面的时候，就在页面上留到对应的位置，将数据库的数据一并渲染完成之后，再返回页面。第一模板引擎不会弄，第二这样设计与本次实验想用到的东西不符。</p>
+<p>最后，我决定用两次请求来完成这个功能，即在页面返回并在加载完成之后，（类似于js中的window.onload）再次发送一个get请求来获取数据库的数据，并对数据做出处理。</p>
 </blockquote>
-<pre><code>buf.fill(2,20,30);//对buf缓存区的21-30字节写入0x02
-</code></pre><h2 id="字符串的长度和缓存区的长度"><a href="#字符串的长度和缓存区的长度" class="headerlink" title="字符串的长度和缓存区的长度"></a><font size="4">字符串的长度和缓存区的长度</font></h2><blockquote>
-<p>在计算字符串长度时，以文字作为单位，在计算缓存区长度时，以字节作为一个单位。通过调用length属性来返回长度值。</p>
-<p>字符串对象创建后不可被更改，而Buffer对象可以被修改;字符串对象拥有indexOf方法，replace方法等等，但是Buffer对象只有一个指定位置进行裁剪的slice方法。</p>
-<p>str=”黄家驹”;<br>    ‘黄家驹’<br>buf = new Buffer(str);<br>    <buffer 84="" e9="" bb="" e5="" ae="" b6="" a9="" b9=""><br>buf.slice(2,5)<br>    <buffer 84="" e5="" ae=""><br>buf<br>    <buffer 84="" e9="" bb="" e5="" ae="" b6="" a9="" b9=""></buffer></buffer></buffer></p>
-<p>Buffer对象的toString方法，将Buffer对象中保存的数据转换为字符串</p>
-<p>buf.toString()<br>    ‘黄家驹’</p>
-<p>向已经创建的Buffer对象中写入字符串</p>
-<p>buf.toString()<br>    ‘黄家驹’</p>
-<p>更加健壮的Buffer转字符串方法</p>
-<p>buf1 = new Buffer([0xe6,0x88,0x91,0xe5,0x96]);<br>    <buffer 88="" 91="" 96="" e6="" e5=""><br>buf2 = new Buffer([0x9c,0xe7,0x88,0xb1]);<br>    <buffer 88="" 9c="" e7="" b1=""><br>buf1.toString()<br>    ‘我�’<br>buf2.toString()<br>    ‘�爱’<br>var StringDecoder = require(“string_decoder”).StringDecoder;<br>    undefined<br>var decoder = new StringDecoder();<br>    undefined<br>decoder.write(buf1);<br>    ‘我’<br>decoder.write(buf2);<br>    ‘喜爱’</buffer></buffer></p>
-<p>Buffer对象与数值对象之间的相互转化</p>
-</blockquote>
-<pre><code>buf.readUInt8(offset);
-buf.writeUInt8(value,offset);
+<pre><code>客户端：
+$scope.$watch(&apos;$viewContentLoaded&apos;, function() {  
+    $http({
+        method: &apos;GET&apos;,
+        url: &apos;http://192.168.216.131:8888/data&apos;, 
+        params:{action:&apos;getData&apos;}
+    }).then(function successCallback(response) {
+            $scope.show = response.data.length;
+            for(var i=0;i&lt;response.data.length;i++){
+                var mes = response.data[i];
+                delete mes._id;
+                console.log(mes);
+                $scope.comments.push(mes);
+                mes={};
+            }
+        }, function errorCallback(response) {
+            alert(&apos;errorCallback&apos;)
+    }); 
+});
 
-&lt;Buffer e6 9d a8 e5 ae b6 e9 a9 b9&gt;
-&gt; buf.readUInt8(3)
-229
+服务器端：
+app.get(&apos;/data&apos;,function(req,res){
+    if(req.query.action==&apos;getData&apos;){
+        MongoClient.connect(DB_CONN_STR,function(err,db){
+            if(err) throw err;
+            else{
+                db.collection(&apos;comments&apos;,function(err,collection){
+                    if(err) throw err;
+                    else{
+                        collection.find({}).toArray(function(err,docs){
+                            if(err) throw err;
+                            else{
+                                res.send(docs);
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }
+....
+</code></pre><blockquote>
+<p>这里有几个点要说明一下，第一，我们在使用表单的method和action来提交请求时，适用于页面跳转的情况，因为此种情况下没有对请求返回的数据做出响应，实际action地址的返回结果会覆盖原来整个页面。而如果需求只是对原来页面的局部更新，则需要使用ajax请求，此请求封装了一个XMLHttpRequest对象，有了一个可以用来响应服务器返回数据的XMLHttpRequest.response,可以根据对此对象的操作来局部更新原来的页面，在angular的http请求中封装了ajax方法。</p>
+<p>第二，关于get请求参数的问题<br>可以在get请求中加入params属性，请求会在url后以键值对的形式发送</p>
+</blockquote>
+<pre><code>$http({
+    method: &apos;GET&apos;,
+    url: &apos;https://www.baidu.com&apos;,
+    params:{action:&apos;data&apos;}
+})
+在f12调试栏看到的请求就是&apos;https://www.baidu.com?action=data  
+在服务器端需要通过req.query.action来获取
+</code></pre><blockquote>
+<p>可以在get请求的url路径中进行追加</p>
+</blockquote>
+<pre><code>$http({
+    method: &apos;GET&apos;,
+    url: &apos;https://www.baidu.com/lol&apos;
+})
+在f12调试栏看到的请求就是&apos;https://www.baidu.com/lol 
+在服务器端可以用app.get(&apos;/:bala&apos;,....)来对此路径做出响应(假设根目录对www.baidu.com)
+我们可以通过req.params.bala获取到值lol
+</code></pre><blockquote>
+<p>第三，在本例中，由于提交一条新评论时，也需要将当前评论插入到页面中，比较简单的做法是直接将当前评论更新到评论数组中，与数据库中返回的查询结果不同，数据库中的查询结果会给每天记录加上id属性，所以我们遍历响应流的数组，删除每条记录的_id属性，然后保存在$socpe作用域上的数组上，通过ng-repeat来生成重复的dom元素</p>
+</blockquote>
+<h1 id="提交一条新的评论"><a href="#提交一条新的评论" class="headerlink" title="提交一条新的评论"></a><font size="5">提交一条新的评论</font></h1><blockquote>
+<p>如果提交一条新记录之后，再次从数据库中重新find一边会增加额外的开销，可以直接在当前页面已经存好的数据库记录的数组中直接新增一条记录即可。</p>
+</blockquote>
+<pre><code>客户端：
+$scope.req = function(){
+    var postData = {
+        content:$scope.comment,
+        time:new Date().getTime(),
+        up:0,
+        down:0
+    }   //将当前提交的数据保存在postData对象里
+    $http({
+        method: &apos;POST&apos;,
+        url: &apos;http://192.168.216.131:8888&apos;,
+        data:{
+            content:$scope.comment,
+            time:new Date().getTime(),
+            up:0,
+            down:0
+        }  
+    }).then(function successCallback(response) {
+            $scope.comments.push(postData);       //当提交成功后将数据存到$scope对象的comments数组上
+            $scope.comment=&quot;&quot;;       
+            $scope.show++;       
+    //清空当前数组，并且将评论条数+1，最后我们通过评论条数是否大于0来判断是否显示暂无留言这一信息
+        }, function errorCallback(response) {
+            alert(&apos;errorCallback&apos;)
+    });
+}
 
-&gt; buf.writeUInt8(255,3)
-4
-&gt; buf
-&lt;Buffer e6 9d a8 ff ae b6 e9 a9 b9&gt;
-</code></pre><blockquote>
-<p>可以使用JSON.stringify方法将Buffer对象中保存的数据转换成字符串，然后通过JSON.parse()方法转换成对象。<br>可以对其执行toString()方法。</p>
-<p>buf = new Buffer(‘我喜爱编程’);<br>    <buffer 88="" 91="" 96="" e6="" e5="" 9c="" e7="" b1="" bc="" a8="" 8b=""><br>JSON.stringify(buf);<br>    ‘{“type”:”Buffer”,”data”:[230,136,145,229,150,156,231,136,177,231,188,150,231,168,139]}’<br>JSON.parse(JSON.stringify(buf))<br>    { type: ‘Buffer’,<br>      data: [ 230, 136, 145, 229, 150, 156, 231, 136, 177, 231, 188, 150, 231, 168, 139 ] }</buffer></p>
-<p>copy = new Buffer(JSON.parse(JSON.stringify(buf)))<br>    <buffer 88="" 91="" 96="" e6="" e5="" 9c="" e7="" b1="" bc="" a8="" 8b=""><br>copy.toString()<br>    ‘我喜爱编程’</buffer></p>
-<p>复制缓存数据，当需要将Buffer对象保存的二进制数复制到另一个Buffer对象中时，可以使用copy方法。</p>
+服务器端：
+app.post(&apos;/&apos;,function(req,res){
+    res.header(&apos;Access-Control-Allow-Origin&apos;, &apos;*&apos;);
+    req.on(&apos;data&apos;,function(data){
+        var obj = JSON.parse(data.toString());
+        MongoClient.connect(DB_CONN_STR,function(err,db){
+            db.collection(&apos;comments&apos;,function(err,collection){
+                if(err) throw err;
+                else{
+                    collection.insert(obj,function(err,obj){
+                        if(err) throw err;
+                        else{
+                            db.close();
+                        }
+                    })
+                }//post请求提交成功之后将数据插入到数据库中
+            })
+        });
+    })
+    res.end(&apos;ok&apos;)
+});
+</code></pre><h1 id="删除一条评论"><a href="#删除一条评论" class="headerlink" title="删除一条评论"></a><font size="5">删除一条评论</font></h1><blockquote>
+<p>我们向数据库提交查询请求和删除请求访问的都是同一个路径，    url: ‘<a href="http://192.168.216.131:8888/data" target="_blank" rel="external">http://192.168.216.131:8888/data</a>‘ 通过params参数的不同，来判断是查询数据还是删除数据，可以在服务器端通过req.query.xxx进行访问，我们用评论的时间来做删除的参数。将此参数通过get请求的params一并发送到服务器端用于在数据库的删除操作，并且将客户端将$scope作用域上comments数组对应的记录删除，并且记录条数-1</p>
 </blockquote>
-<pre><code>buf.copy(targetBuffer,[]);
-&gt; a=Buffer(&apos;杨彩清&apos;);
-&lt;Buffer e6 9d a8 e5 bd a9 e6 b8 85&gt;
-&gt; b=new Buffer(100)
-&lt;Buffer 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ... &gt;
-&gt; a.copy(b,5,0,4) //将a的第1-4个二进制数据复制到b的第5个字节处
-4
-&gt; b
-&lt;Buffer 00 00 00 00 00 e6 9d a8 e5 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ... &gt;
-</code></pre><h2 id="Buffer类的方法"><a href="#Buffer类的方法" class="headerlink" title="Buffer类的方法"></a><font size="4">Buffer类的方法</font></h2><blockquote>
-<p>isBuffer方法用于判断一个对象是否为一个Buffer对象,使用typeof查看时，会返回object。</p>
-</blockquote>
-<pre><code>Buffer.isBuffer(obj);
-</code></pre><blockquote>
-<p>byteLength方法用于计算指定字符串的字节数。</p>
-</blockquote>
-<pre><code>Buffer.byteLength(string);
-</code></pre><blockquote>
-<p>concat方法用于将几个Buffer对象连接起来</p>
-</blockquote>
-<pre><code>Buffer.concat(list); //list为存放了多个Buffer对象的数组
-</code></pre><blockquote>
-<p>isEncoding方法用于检测一个次复出是否为一个有效的编码格式字符串</p>
-<p>str=’utf-8’<br>    ‘utf-8’<br>Buffer.isEncoding(str)<br>    true</p>
-</blockquote>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a><font size="5">小结</font></h1><p>介绍了关于Buffer对象及其使用方法，包括如何创建Buffer对象，计算字符串长度和缓存区长度，以及如何实现Buffer对象与其他对象之间的转换，如何将Buffer对象中的数据复制到另一个Buffer对象中，以及Buffer类的各种方法。</p>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p>[1]《Node.js权威指南》<br>[2]<a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-tutorial.html</a></p>
+<pre><code>页面：
+&lt;li ng-repeat = &quot;x in comments&quot;&gt;
+    {{x.content + ' '}}&lt;br&gt;
+    {{x.time|date:"yyyy-MM-dd HH:mm:ss"}} 
+    &lt;button ng-click=&apos;del(x.time)&apos;&gt;删除&lt;/button&gt;
+&lt;/li&gt;
+
+客户端：
+$scope.del = function(time){
+    for(var i=0;i&lt;$scope.comments.length;i++){
+        if(time == $scope.comments[i].time){
+            $scope.comments.splice(i,1);
+        }
+    }
+    $http({
+        method: &apos;GET&apos;,
+        url: &apos;http://192.168.216.131:8888/data&apos; ,
+        params:{action:&quot;delData&quot;,deltime:time}
+    }).then(function(){
+        $scope.show--;
+    },function(){})
+}
+
+服务器端：
+if(req.query.action==&apos;delData&apos;){
+    var deltime = parseInt(req.query.deltime);
+    MongoClient.connect(DB_CONN_STR,function(err,db){
+        db.collection(&apos;comments&apos;,function(err,collection){
+            if(err) throw err;
+            else{
+                collection.remove({time:deltime},function(err,result){
+                    if(err) throw err;
+                    else{
+                        res.send(&apos;成功删除&apos;+result+&apos;条数据&apos;);
+                    }
+                })
+            }
+        })
+    });
+}
+</code></pre><h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a><font size="5">最终效果</font></h1><p>访问初始页面：<br><img src="https://raw.githubusercontent.com/LLEmily/Images/master/comments/1.png"></p>
+<p>提交一条评论：<br><img src="https://raw.githubusercontent.com/LLEmily/Images/master/comments/2.png"></p>
+<p>删除一条评论：<br><img src="https://raw.githubusercontent.com/LLEmily/Images/master/comments/3.png"></p>
+<p>访问初始页面的响应：<br><img src="https://raw.githubusercontent.com/LLEmily/Images/master/comments/4.png"></p>
+<p>提交一条评论的响应：<br><img src="https://raw.githubusercontent.com/LLEmily/Images/master/comments/5.png"></p>
+<p>删除一条评论的响应：<br><img src="https://raw.githubusercontent.com/LLEmily/Images/master/comments/6.png"></p>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a><font size="5">reference</font></h1><p>[1]《Angular.js权威教程》<br>[2]<a href="http://www.runoob.com/angularjs/angularjs-tutorial.html" target="_blank" rel="external">http://www.runoob.com/angularjs/angularjs-tutorial.html</a><br>[3]<a href="https://github.com/LLEmily/comments" target="_blank" rel="external">https://github.com/LLEmily/comments</a></p>
 
       
     </div>
@@ -452,7 +570,7 @@ buf.writeUInt8(value,offset);
       
         <div class="post-tags">
           
-            <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+            <a href="/tags/angularjs/" rel="tag"># angularjs</a>
           
         </div>
       
@@ -465,8 +583,8 @@ buf.writeUInt8(value,offset);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/17/node_study1/" rel="next" title="《nodejs权威指南》学习笔记1">
-                <i class="fa fa-chevron-left"></i> 《nodejs权威指南》学习笔记1
+              <a href="/2017/10/24/weekly_17_10_24/" rel="next" title="2017_10_24周报">
+                <i class="fa fa-chevron-left"></i> 2017_10_24周报
               </a>
             
           </div>
@@ -475,8 +593,8 @@ buf.writeUInt8(value,offset);
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/24/weekly_17_10_24/" rel="prev" title="2017_10_24周报">
-                2017_10_24周报 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/06/angular_study1/" rel="prev" title="《angular.js权威指南》学习笔记1">
+                《angular.js权威指南》学习笔记1 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -634,7 +752,7 @@ buf.writeUInt8(value,offset);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Buffer类"><span class="nav-number">1.</span> <span class="nav-text">Buffer类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-Buffer类"><span class="nav-number">1.1.</span> <span class="nav-text">创建 Buffer类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的长度和缓存区的长度"><span class="nav-number">1.2.</span> <span class="nav-text">字符串的长度和缓存区的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buffer类的方法"><span class="nav-number">1.3.</span> <span class="nav-text">Buffer类的方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">2.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何传递页面"><span class="nav-number">1.</span> <span class="nav-text">如何传递页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何在初次加载页面的同时一并读出数据库数据"><span class="nav-number">2.</span> <span class="nav-text">如何在初次加载页面的同时一并读出数据库数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交一条新的评论"><span class="nav-number">3.</span> <span class="nav-text">提交一条新的评论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除一条评论"><span class="nav-number">4.</span> <span class="nav-text">删除一条评论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最终效果"><span class="nav-number">5.</span> <span class="nav-text">最终效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>
